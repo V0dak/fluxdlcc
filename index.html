@@ -2547,6 +2547,7 @@ input:focus,
 }
 </style>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 <header class="top">
@@ -2867,12 +2868,12 @@ input:focus,
 <div class="login-reference-heading" aria-label="С возвращением. Начни свой путь прямо сейчас · FLUX"><span class="flux-word">FLUX</span></div>
 <h2 id="authTitle">С возвращением</h2>
 <p class="auth-subtitle" id="authText">Начни свой путь прямо сейчас · <b>FLUX</b></p>
-<input id="authLogin" placeholder="Логин или e-mail" autocomplete="username">
+<input id="authLogin" placeholder="E-mail" autocomplete="username">
 <div class="auth-password-wrap">
   <input id="authPass" type="password" placeholder="Введи пароль" autocomplete="current-password">
   <button type="button" class="auth-show-password" onclick="toggleFluxPassword()">Показать</button>
 </div>
-<div class="auth-remember"><button type="button" class="auth-check" id="fluxRemember" onclick="this.classList.toggle('on')" aria-label="Запомнить меня"></button><span>Запомнить меня</span></div>
+<div class="auth-remember"><button type="button" class="auth-check on" id="fluxRemember" onclick="this.classList.toggle('on')" aria-label="Запомнить меня"></button><span>Запомнить меня</span></div>
 <div class="auth-verified"><span class="auth-verified-icon">✓</span><span>Проверено</span></div>
 <button class="btn primary" id="authSubmit" onclick="submitAuth()">Войти</button>
 <button class="forgot-link" id="forgotSwitch" type="button" onclick="toggleForgotMode()">Забыли пароль?</button>
@@ -2975,12 +2976,7 @@ function applyLang(){
 }
 function toast(s){const x=document.getElementById("toast");x.textContent=s;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),2400)}
 function toggleMode(){mode=mode==="login"?"register":"login";document.getElementById("accountHeading").textContent=mode==="login"?T[lang].loginTitle:T[lang].register;applyLang()}
-function accountAction(){
- const login=document.getElementById("login").value.trim(),pass=document.getElementById("password").value;
- if(!login||!pass){toast(lang==="en"?"Fill in both fields.":lang==="uk"?"Заповни обидва поля.":"Заполни оба поля.");return}
- if(mode==="register"){localStorage.setItem("flux_account",JSON.stringify({login,pass}));toast(lang==="en"?"Account created.":lang==="uk"?"Акаунт створено.":"Аккаунт создан.");toggleMode()}
- else{const a=JSON.parse(localStorage.getItem("flux_account")||"null");toast(a&&a.login===login&&a.pass===pass?(lang==="en"?"Welcome back!":lang==="uk"?"Ласкаво просимо!":"Добро пожаловать!"):(lang==="en"?"Wrong login or password.":lang==="uk"?"Неправильний логін або пароль.":"Неверный логин или пароль."))}
-}
+function accountAction(){toast("Авторизация работает через Supabase.");}
 function downloadLoader(){
  const blob=new Blob(["FLUX LOADER DEMO\n\nReplace this file with your real Windows loader."],{type:"application/octet-stream"});
  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="FLUX-Loader.exe";a.click();URL.revokeObjectURL(a.href);toast(lang==="en"?"Loader downloaded.":lang==="uk"?"Лоадер завантажено.":"Лоадер скачан.");
@@ -3049,9 +3045,7 @@ function logout(){localStorage.removeItem('flux_user');toast(lang==='en'?'Logged
   function isLogged(){
     return !!currentUser();
   }
-  function getAccount(){
-    try{return JSON.parse(localStorage.getItem("flux_account")||"null")}catch(e){return null}
-  }
+  function getAccount(){ return null; }
   function updateAccountUI(){
     const account = currentUser();
     const profileBtn=document.querySelector(".profile-pill");
@@ -3089,7 +3083,7 @@ function logout(){localStorage.removeItem('flux_user');toast(lang==='en'?'Logged
     if(authMode==="register"){
       title.textContent="Создание аккаунта";
       text.innerHTML='Создай аккаунт прямо сейчас · <b>FLUX</b>';
-      login.placeholder="Логин или e-mail";
+      login.placeholder="E-mail";
       pass.placeholder="Придумай пароль";
       pass.autocomplete="new-password";
       submit.textContent="Зарегистрироваться";
@@ -3098,7 +3092,7 @@ function logout(){localStorage.removeItem('flux_user');toast(lang==='en'?'Logged
     }else if(authMode==="forgot"){
       title.textContent="Восстановление пароля";
       text.innerHTML='Задай новый пароль для аккаунта · <b>FLUX</b>';
-      login.placeholder="Логин или e-mail";
+      login.placeholder="E-mail";
       pass.placeholder="Новый пароль";
       pass.autocomplete="new-password";
       submit.textContent="Сбросить пароль";
@@ -3107,7 +3101,7 @@ function logout(){localStorage.removeItem('flux_user');toast(lang==='en'?'Logged
     }else{
       title.textContent="С возвращением";
       text.innerHTML='Начни свой путь прямо сейчас · <b>FLUX</b>';
-      login.placeholder="Логин или e-mail";
+      login.placeholder="E-mail";
       pass.placeholder="Введи пароль";
       pass.autocomplete="current-password";
       submit.textContent="Войти";
@@ -3152,53 +3146,7 @@ function logout(){localStorage.removeItem('flux_user');toast(lang==='en'?'Logged
     setTimeout(()=>document.getElementById("authLogin")?.focus(),0);
   };
 
-  window.submitAuth=function(){
-    const login=(document.getElementById("authLogin")?.value||"").trim();
-    const pass=document.getElementById("authPass")?.value||"";
-
-    if(!login || !pass){
-      toast(authMode==="forgot" ? "Введи логин и новый пароль." : "Заполни логин и пароль.");
-      return;
-    }
-
-    if(authMode==="register"){
-      localStorage.setItem("flux_account",JSON.stringify({login,pass}));
-      localStorage.setItem("flux_user",login);
-      updateAccountUI();
-      toast("Аккаунт создан. Добро пожаловать!");
-      const target=pendingTab||"account";
-      pendingTab=null;
-      closeLogin();
-      showTab(target);
-      return;
-    }
-
-    if(authMode==="forgot"){
-      const account=getAccount();
-      if(!account || account.login!==login){
-        toast("Аккаунт с таким логином не найден.");
-        return;
-      }
-      localStorage.setItem("flux_account",JSON.stringify({...account,pass}));
-      document.getElementById("authPass").value="";
-      setAuthMode("login");
-      toast("Пароль изменён. Теперь войди в аккаунт.");
-      return;
-    }
-
-    const account=getAccount();
-    if(account && account.login===login && account.pass===pass){
-      localStorage.setItem("flux_user",login);
-      updateAccountUI();
-      toast("Добро пожаловать!");
-      const target=pendingTab||"account";
-      pendingTab=null;
-      closeLogin();
-      showTab(target);
-    }else{
-      toast("Неверный логин или пароль.");
-    }
-  };
+  window.submitAuth=function(){ toast("Подключение к серверу авторизации…"); };
 
   window.logout=function(){
     localStorage.removeItem("flux_user");
@@ -3420,6 +3368,196 @@ document.addEventListener("click",e=>{
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape" && document.getElementById("purchaseOverlay")?.classList.contains("open")) closePurchase();
 });
+</script>
+
+
+<script>
+/* ===== FLUX Supabase Auth ===== */
+(function(){
+  const SUPABASE_URL = "https://hgxjpocdjhlpkfaxmadh.supabase.co";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_RMcP26AnepYSxMBoSZSztQ_nyaeztye";
+
+  if(!window.supabase){
+    console.error("Supabase JS did not load");
+    return;
+  }
+
+  const fluxSupabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY,
+    {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true
+      }
+    }
+  );
+  window.fluxSupabase = fluxSupabase;
+
+  function displayName(user){
+    if(!user) return "";
+    const metaName = user.user_metadata && user.user_metadata.username;
+    if(metaName) return String(metaName);
+    const email = user.email || "";
+    return email ? email.split("@")[0] : "FLUX";
+  }
+
+  function updateVisibleAccount(user){
+    const name = displayName(user);
+    const email = user && user.email ? user.email : "";
+    const uid = user && user.id ? user.id : "";
+
+    const profileBtn=document.querySelector(".profile-pill");
+    const topAvatar=document.getElementById("topAvatar");
+    const topText=document.getElementById("topProfileText");
+
+    if(user){
+      localStorage.setItem("flux_user", name);
+      localStorage.setItem("flux_user_email", email);
+      localStorage.setItem("flux_user_id", uid);
+      if(profileBtn) profileBtn.classList.remove("guest-login");
+      if(topText) topText.textContent=name;
+      if(topAvatar) topAvatar.textContent=(name[0]||"F").toUpperCase();
+    }else{
+      localStorage.removeItem("flux_user");
+      localStorage.removeItem("flux_user_email");
+      localStorage.removeItem("flux_user_id");
+      if(profileBtn) profileBtn.classList.add("guest-login");
+      if(topText) topText.textContent="Кабинет";
+      if(topAvatar) topAvatar.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19c.8-3.2 3.1-5 6.5-5s5.7 1.8 6.5 5"/></svg>';
+    }
+
+    // Delete passwords left by the old local demo.
+    localStorage.removeItem("flux_account");
+
+    document.querySelectorAll(".account-name").forEach(x=>x.textContent=name||"—");
+    document.querySelectorAll(".profile-avatar").forEach(x=>x.textContent=name?(name[0]||"F").toUpperCase():"—");
+
+    const emailEl=document.getElementById("accountEmail");
+    if(emailEl) emailEl.textContent=email||"—";
+    const uidEl=document.getElementById("accountUid");
+    if(uidEl) uidEl.textContent=uid ? uid.slice(0,8).toUpperCase() : "—";
+
+    const referral=document.getElementById("referralLink");
+    if(referral){
+      referral.textContent=location.origin+location.pathname+"?ref="+encodeURIComponent(name||"");
+    }
+  }
+
+  function niceError(error){
+    const m=(error && error.message ? error.message : "").toLowerCase();
+    if(m.includes("invalid login credentials")) return "Неверный e-mail или пароль.";
+    if(m.includes("user already registered")) return "Аккаунт с таким e-mail уже существует.";
+    if(m.includes("password should be")) return "Пароль слишком короткий. Используй минимум 6 символов.";
+    if(m.includes("invalid") && m.includes("email")) return "Введи правильный e-mail.";
+    if(m.includes("rate limit")) return "Слишком много попыток. Попробуй немного позже.";
+    return error && error.message ? error.message : "Ошибка авторизации.";
+  }
+
+  function currentAuthMode(){
+    const modal=document.querySelector(".login-modal");
+    if(modal && modal.classList.contains("auth-register")) return "register";
+    if(modal && modal.classList.contains("auth-forgot")) return "forgot";
+    return "login";
+  }
+
+  window.submitAuth = async function(){
+    const email=(document.getElementById("authLogin")?.value||"").trim().toLowerCase();
+    const pass=document.getElementById("authPass")?.value||"";
+    const mode=currentAuthMode();
+    const btn=document.getElementById("authSubmit");
+
+    if(!email || (mode!=="forgot" && !pass)){
+      toast(mode==="forgot" ? "Введи e-mail." : "Введи e-mail и пароль.");
+      return;
+    }
+    if(!email.includes("@")){
+      toast("Для аккаунта нужен e-mail.");
+      return;
+    }
+
+    if(btn) btn.disabled=true;
+    try{
+      if(mode==="register"){
+        const {data,error} = await fluxSupabase.auth.signUp({
+          email,
+          password: pass,
+          options: { data: { username: email.split("@")[0] } }
+        });
+        if(error) throw error;
+
+        if(data.session && data.user){
+          updateVisibleAccount(data.user);
+          toast("Аккаунт создан. Добро пожаловать!");
+          if(typeof closeLogin==="function") closeLogin();
+          if(typeof showTab==="function") showTab("account");
+        }else{
+          toast("Аккаунт создан. Проверь почту для подтверждения.");
+          if(typeof setAuthMode==="function") setAuthMode("login");
+        }
+        return;
+      }
+
+      if(mode==="forgot"){
+        const {error} = await fluxSupabase.auth.resetPasswordForEmail(email, {
+          redirectTo: location.origin + location.pathname
+        });
+        if(error) throw error;
+        toast("Письмо для восстановления отправлено на e-mail.");
+        if(typeof setAuthMode==="function") setAuthMode("login");
+        return;
+      }
+
+      const {data,error} = await fluxSupabase.auth.signInWithPassword({
+        email,
+        password: pass
+      });
+      if(error) throw error;
+
+      updateVisibleAccount(data.user);
+      toast("Добро пожаловать!");
+      if(typeof closeLogin==="function") closeLogin();
+      if(typeof showTab==="function") showTab("account");
+    }catch(error){
+      console.error(error);
+      toast(niceError(error));
+    }finally{
+      if(btn) btn.disabled=false;
+    }
+  };
+
+  window.logout = async function(){
+    try{
+      await fluxSupabase.auth.signOut();
+    }catch(error){
+      console.error(error);
+    }
+    updateVisibleAccount(null);
+    toast("Вы вышли из аккаунта.");
+    if(typeof showTab==="function") showTab("home");
+  };
+
+  async function restoreSession(){
+    const {data,error} = await fluxSupabase.auth.getSession();
+    if(error){
+      console.error(error);
+      updateVisibleAccount(null);
+      return;
+    }
+    updateVisibleAccount(data.session ? data.session.user : null);
+  }
+
+  fluxSupabase.auth.onAuthStateChange((_event, session)=>{
+    updateVisibleAccount(session ? session.user : null);
+  });
+
+  if(document.readyState==="loading"){
+    document.addEventListener("DOMContentLoaded", restoreSession);
+  }else{
+    restoreSession();
+  }
+})();
 </script>
 
 </body>
