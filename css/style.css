@@ -2890,14 +2890,14 @@ input:focus,
   background:transparent!important;
 }
 .lang-current{
-  min-width:90px;
+  min-width:76px;
   height:36px;
-  padding:0 9px;
+  padding:0 7px;
   display:flex;
   align-items:center;
   justify-content:flex-start;
-  gap:7px;
-  border:1px solid rgba(255,255,255,.95);
+  gap:2px;
+  border:0;
   border-radius:6px;
   background:#141415;
   color:#fff;
@@ -2906,7 +2906,7 @@ input:focus,
   font-weight:700;
   line-height:1;
   cursor:pointer;
-  box-shadow:0 1px 0 rgba(255,255,255,.04) inset;
+  box-shadow:none;
   transition:border-color .16s ease, background .16s ease;
 }
 .lang-current:hover{background:#19191a}
@@ -2924,7 +2924,7 @@ input:focus,
 .lang-chevron{
   width:12px;
   height:12px;
-  margin-left:auto;
+  margin-left:3px;
   fill:none;
   stroke:currentColor;
   stroke-width:1.8;
