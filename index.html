@@ -2850,8 +2850,127 @@ input:focus,
 }
 </style>
 
+
+<style>
+/* ===== FLUX smooth intro splash ===== */
+#fluxIntro{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:grid;
+  place-items:center;
+  background:#111;
+  opacity:1;
+  visibility:visible;
+  transition:opacity .7s cubic-bezier(.22,.61,.36,1), visibility .7s;
+}
+#fluxIntro.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+.flux-intro-inner{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:64px;
+  transform:scale(.96);
+  opacity:0;
+  animation:fluxIntroIn .75s cubic-bezier(.22,.61,.36,1) .12s forwards;
+}
+.flux-intro-word{
+  min-width:165px;
+  text-align:center;
+  color:#f4f4f6;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:42px;
+  line-height:1;
+  font-weight:500;
+  letter-spacing:-.045em;
+  opacity:0;
+  transform:translateY(4px);
+  animation:fluxWordIn .65s ease .28s forwards;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:geometricPrecision;
+}
+.flux-intro-brace{
+  width:50px;
+  height:88px;
+  overflow:visible;
+  filter:drop-shadow(0 0 12px rgba(255,255,255,.02));
+}
+.flux-intro-brace path{
+  fill:none;
+  stroke-width:12;
+  stroke-linecap:butt;
+  stroke-linejoin:round;
+}
+.flux-intro-brace.left{
+  transform:translateX(14px);
+  opacity:0;
+  animation:fluxBraceLeft .7s cubic-bezier(.22,.61,.36,1) .18s forwards;
+}
+.flux-intro-brace.right{
+  transform:scaleX(-1) translateX(14px);
+  opacity:0;
+  animation:fluxBraceRight .7s cubic-bezier(.22,.61,.36,1) .18s forwards;
+}
+.flux-intro-brace.left path{stroke:#e33a43}
+.flux-intro-brace.right path{stroke:#6072df}
+
+@keyframes fluxIntroIn{
+  from{opacity:0;transform:scale(.96)}
+  to{opacity:1;transform:scale(1)}
+}
+@keyframes fluxWordIn{
+  from{opacity:0;transform:translateY(4px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fluxBraceLeft{
+  from{opacity:0;transform:translateX(28px)}
+  to{opacity:1;transform:translateX(0)}
+}
+@keyframes fluxBraceRight{
+  from{opacity:0;transform:scaleX(-1) translateX(28px)}
+  to{opacity:1;transform:scaleX(-1) translateX(0)}
+}
+@media(max-width:600px){
+  .flux-intro-inner{gap:34px}
+  .flux-intro-word{min-width:130px;font-size:34px}
+  .flux-intro-brace{width:42px;height:74px}
+  .flux-intro-brace path{stroke-width:11}
+}
+@media (prefers-reduced-motion:reduce){
+  .flux-intro-inner,
+  .flux-intro-word,
+  .flux-intro-brace.left,
+  .flux-intro-brace.right{
+    animation:none!important;
+    opacity:1!important;
+    transform:none!important;
+  }
+  .flux-intro-brace.right{transform:scaleX(-1)!important}
+}
+</style>
+
 </head>
 <body>
+
+<div id="fluxIntro" aria-hidden="true">
+  <div class="flux-intro-inner">
+    <svg class="flux-intro-brace left" viewBox="0 0 60 110" aria-hidden="true">
+      <path d="M49 8 C49 30 39 42 19 55 C39 68 49 80 49 102"></path>
+    </svg>
+
+    <div class="flux-intro-word">FLUX</div>
+
+    <svg class="flux-intro-brace right" viewBox="0 0 60 110" aria-hidden="true">
+      <path d="M49 8 C49 30 39 42 19 55 C39 68 49 80 49 102"></path>
+    </svg>
+  </div>
+</div>
+
 <header class="top">
  <div class="nav velka-nav">
   <a class="logo brand-logo" href="#" onclick="showTab('home');return false" aria-label="FLUX">
@@ -3969,6 +4088,34 @@ document.addEventListener("keydown",e=>{
   }else{
     restoreSession();
   }
+})();
+</script>
+
+
+<script>
+/* FLUX intro: show on every page load, then fade into the site. */
+(function(){
+  const intro=document.getElementById("fluxIntro");
+  if(!intro) return;
+
+  document.documentElement.style.overflow="hidden";
+
+  window.addEventListener("load",()=>{
+    setTimeout(()=>{
+      intro.classList.add("hide");
+      document.documentElement.style.overflow="";
+      setTimeout(()=>intro.remove(),750);
+    },1800);
+  });
+
+  // Failsafe in case some external resource never finishes loading.
+  setTimeout(()=>{
+    if(document.body.contains(intro)){
+      intro.classList.add("hide");
+      document.documentElement.style.overflow="";
+      setTimeout(()=>intro.remove(),750);
+    }
+  },4200);
 })();
 </script>
 
