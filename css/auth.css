@@ -1,0 +1,107 @@
+/* Final authentication overrides. */
+
+/* ===== Normalized FLUX auth modal ===== */
+#loginOverlay.login-overlay{
+  align-items:center!important;
+  justify-content:center!important;
+  padding:20px!important;
+  overflow:auto!important;
+  background:rgba(0,0,0,.76)!important;
+  backdrop-filter:blur(12px)!important;
+  -webkit-backdrop-filter:blur(12px)!important;
+}
+#loginOverlay .login-modal{
+  position:relative!important;
+  width:min(400px,100%)!important;
+  max-width:400px!important;
+  margin:0 auto!important;
+  padding:28px!important;
+  border:1px solid rgba(255,255,255,.09)!important;
+  border-radius:22px!important;
+  background:linear-gradient(180deg,rgba(18,20,26,.98),rgba(10,11,15,.98))!important;
+  box-shadow:0 28px 90px rgba(0,0,0,.58),inset 0 1px 0 rgba(255,255,255,.025)!important;
+  backdrop-filter:blur(24px) saturate(115%)!important;
+  -webkit-backdrop-filter:blur(24px) saturate(115%)!important;
+  transform:translateY(8px) scale(.985)!important;
+  transition:transform .2s ease,opacity .2s ease!important;
+}
+#loginOverlay.open .login-modal{transform:translateY(0) scale(1)!important}
+#loginOverlay .auth-close{
+  position:absolute;top:14px;right:14px;z-index:3;
+  width:34px;height:34px;display:grid;place-items:center;padding:0;
+  border:1px solid rgba(255,255,255,.08);border-radius:10px;
+  background:rgba(255,255,255,.035);color:#8d929d;
+  font:400 22px/1 Arial,sans-serif;cursor:pointer;transition:.16s ease;
+}
+#loginOverlay .auth-close:hover{color:#fff;background:rgba(255,255,255,.075);border-color:rgba(255,255,255,.14)}
+#loginOverlay .flux-auth-brand{justify-content:flex-start!important;gap:9px!important;margin:0 0 26px!important;color:#fff!important}
+#loginOverlay .flux-auth-brand-mark{width:24px!important;height:24px!important}
+#loginOverlay .flux-auth-brand span:last-child{font-size:22px!important;font-weight:900!important;letter-spacing:-.035em!important}
+#loginOverlay .login-reference-heading{
+  width:100%!important;max-width:none!important;min-height:0!important;
+  margin:0 0 24px!important;padding:0!important;border:0!important;border-radius:0!important;
+  background:none!important;box-shadow:none!important;display:block!important;overflow:visible!important;
+  transform:none!important;
+}
+#loginOverlay .login-reference-heading::before{display:none!important}
+#loginOverlay .login-reference-title{margin:0 0 8px!important;color:#f7f8fb!important;font-size:30px!important;line-height:1.05!important;font-weight:850!important;letter-spacing:-.04em!important}
+#loginOverlay .login-reference-subtitle{color:#8f949f!important;font-size:13px!important;line-height:1.45!important;font-weight:600!important}
+#loginOverlay .login-reference-subtitle .flux-word{position:static!important;color:#cfd3dc!important;font-size:13px!important;font-weight:800!important}
+#loginOverlay input{
+  width:100%!important;height:50px!important;margin:0 0 12px!important;padding:0 15px!important;
+  border:1px solid rgba(255,255,255,.075)!important;border-radius:14px!important;
+  background:#15171d!important;color:#f4f5f7!important;font-size:14px!important;
+  box-shadow:none!important;outline:none!important;
+  transition:border-color .16s ease,background .16s ease,box-shadow .16s ease!important;
+}
+#loginOverlay input::placeholder{color:#676c76!important;opacity:1}
+#loginOverlay input:hover{background:#181a21!important;border-color:rgba(255,255,255,.11)!important}
+#loginOverlay input:focus{background:#181a21!important;border-color:#316dff!important;box-shadow:0 0 0 3px rgba(49,109,255,.12)!important}
+#loginOverlay .auth-password-wrap{width:100%!important;margin:0!important}
+#loginOverlay .auth-password-wrap input{padding-right:88px!important;margin-bottom:12px!important}
+#loginOverlay .auth-show-password{
+  right:14px!important;top:25px!important;transform:translateY(-50%)!important;height:auto!important;
+  padding:6px 2px!important;border:0!important;background:transparent!important;color:#8c919b!important;
+  font-size:12px!important;font-weight:700!important;
+}
+#loginOverlay .auth-show-password:hover{color:#d8dbe2!important}
+#loginOverlay .auth-options{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:30px;margin:0 0 16px}
+#loginOverlay .auth-remember{display:flex;align-items:center;gap:8px;margin:0!important;color:#9da2ac!important;font-size:12px!important;font-weight:650!important;white-space:nowrap}
+#loginOverlay .auth-check{width:18px!important;height:18px!important;flex:0 0 18px;border:1px solid #474c57!important;border-radius:6px!important;background:#111319!important}
+#loginOverlay .auth-check.on{background:#2463f3!important;border-color:#2463f3!important}
+#loginOverlay .auth-check.on:after{font-size:11px!important}
+#loginOverlay .forgot-link{
+  display:block;width:auto!important;margin:0!important;padding:4px 0!important;border:0!important;background:transparent!important;
+  color:#8f949f!important;text-decoration:none!important;font-size:12px!important;font-weight:650!important;white-space:nowrap;cursor:pointer;
+}
+#loginOverlay .forgot-link:hover{color:#fff!important}
+#loginOverlay .auth-verified{display:none!important}
+#loginOverlay .btn.primary{
+  width:100%!important;height:50px!important;margin:0!important;border:1px solid rgba(255,255,255,.04)!important;border-radius:14px!important;
+  background:linear-gradient(135deg,#1d5cff,#3275ff)!important;color:#fff!important;font-size:14px!important;font-weight:800!important;
+  box-shadow:0 12px 28px rgba(29,92,255,.22)!important;transition:transform .16s ease,filter .16s ease,box-shadow .16s ease!important;
+}
+#loginOverlay .btn.primary:hover{filter:brightness(1.08)!important;transform:translateY(-1px)!important;box-shadow:0 15px 34px rgba(29,92,255,.28)!important}
+#loginOverlay .auth-switch{display:block;width:100%!important;margin:18px 0 0!important;padding:4px!important;border:0!important;background:transparent!important;color:#777c86!important;font-size:12px!important;font-weight:600!important;text-align:center!important;cursor:pointer!important}
+#loginOverlay .auth-switch b{color:#d9dce3!important;font-weight:750!important}
+#loginOverlay .auth-switch:hover b{color:#fff!important}
+#loginOverlay .auth-back{margin:0 0 22px!important;color:#8f949f!important;font-size:12px!important;font-weight:700!important}
+#loginOverlay .auth-back:hover{color:#fff!important}
+#loginOverlay .login-modal.auth-register .auth-remember{display:none!important}
+#loginOverlay .login-modal.auth-register .auth-options{justify-content:flex-end!important}
+#loginOverlay .login-modal.auth-register #authTitle,
+#loginOverlay .login-modal.auth-forgot #authTitle,
+#loginOverlay .login-modal.auth-verify-reset #authTitle,
+#loginOverlay .login-modal.auth-recovery #authTitle{font-size:28px!important;line-height:1.08!important;margin:0 0 8px!important;color:#f7f8fb!important}
+#loginOverlay .login-modal.auth-register #authText,
+#loginOverlay .login-modal.auth-forgot #authText,
+#loginOverlay .login-modal.auth-verify-reset #authText,
+#loginOverlay .login-modal.auth-recovery #authText{margin:0 0 22px!important;color:#8f949f!important;line-height:1.45!important}
+@media(max-width:520px){
+  #loginOverlay.login-overlay{padding:14px!important;align-items:center!important}
+  #loginOverlay .login-modal{width:100%!important;max-width:390px!important;padding:24px 20px!important;border-radius:20px!important;margin:0 auto!important}
+  #loginOverlay .flux-auth-brand{margin-bottom:22px!important}
+  #loginOverlay .login-reference-title{font-size:28px!important}
+  #loginOverlay .auth-options{gap:10px}
+}
+@media(max-width:360px){#loginOverlay .auth-options{align-items:flex-start;flex-direction:column;gap:8px}}
