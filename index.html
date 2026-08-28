@@ -2954,6 +2954,236 @@ input:focus,
 }
 </style>
 
+
+<style>
+/* FLUX language dropdown — reference style */
+.langs{
+  position:relative!important;
+  width:auto!important;
+  min-width:0!important;
+  height:auto!important;
+  padding:0!important;
+  gap:0!important;
+  display:block!important;
+  overflow:visible!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+}
+.lang-current{
+  min-width:90px;
+  height:36px;
+  padding:0 9px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:7px;
+  border:1px solid rgba(255,255,255,.95);
+  border-radius:6px;
+  background:#141415;
+  color:#fff;
+  font-family:inherit;
+  font-size:14px;
+  font-weight:700;
+  line-height:1;
+  cursor:pointer;
+  box-shadow:0 1px 0 rgba(255,255,255,.04) inset;
+  transition:border-color .16s ease, background .16s ease;
+}
+.lang-current:hover{background:#19191a}
+.lang-current:focus-visible{outline:2px solid rgba(226,73,132,.55);outline-offset:2px}
+.lang-flag{
+  width:22px;
+  min-width:22px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  line-height:1;
+}
+.lang-code{letter-spacing:-.01em}
+.lang-chevron{
+  width:12px;
+  height:12px;
+  margin-left:auto;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  opacity:.78;
+  transition:transform .18s ease;
+}
+.langs.open .lang-chevron{transform:rotate(180deg)}
+.lang-menu{
+  position:absolute;
+  top:43px;
+  right:0;
+  z-index:1200;
+  width:176px;
+  padding:4px;
+  border:1px solid #2d2d30;
+  border-radius:5px;
+  background:#171718;
+  box-shadow:0 12px 30px rgba(0,0,0,.32);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translateY(-4px);
+  transform-origin:top right;
+  transition:opacity .15s ease, transform .15s ease, visibility .15s ease;
+}
+.langs.open .lang-menu{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transform:translateY(0);
+}
+.lang-option{
+  width:100%;
+  height:36px;
+  padding:0 9px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  border:0;
+  border-radius:4px;
+  background:transparent;
+  color:#a8a8aa;
+  font-family:inherit;
+  font-size:14px;
+  font-weight:700;
+  line-height:1;
+  text-align:left;
+  cursor:pointer;
+  transition:background .14s ease, color .14s ease;
+}
+.lang-option:hover{background:#202022;color:#f3f3f4}
+.lang-option.active{background:#3b1725;color:#fff}
+.lang-option .lang-name{white-space:nowrap}
+.lang-check{
+  margin-left:auto;
+  color:#e34f87;
+  font-size:18px;
+  font-weight:800;
+  line-height:1;
+  opacity:0;
+  transform:scale(.8);
+  transition:opacity .14s ease, transform .14s ease;
+}
+.lang-option.active .lang-check{opacity:1;transform:scale(1)}
+@media(max-width:780px){.langs{display:none!important}}
+</style>
+
+
+<style id="flux-login-normalized">
+/* ===== Normalized FLUX auth modal ===== */
+#loginOverlay.login-overlay{
+  align-items:center!important;
+  justify-content:center!important;
+  padding:20px!important;
+  overflow:auto!important;
+  background:rgba(0,0,0,.76)!important;
+  backdrop-filter:blur(12px)!important;
+  -webkit-backdrop-filter:blur(12px)!important;
+}
+#loginOverlay .login-modal{
+  position:relative!important;
+  width:min(400px,100%)!important;
+  max-width:400px!important;
+  margin:0 auto!important;
+  padding:28px!important;
+  border:1px solid rgba(255,255,255,.09)!important;
+  border-radius:22px!important;
+  background:linear-gradient(180deg,rgba(18,20,26,.98),rgba(10,11,15,.98))!important;
+  box-shadow:0 28px 90px rgba(0,0,0,.58),inset 0 1px 0 rgba(255,255,255,.025)!important;
+  backdrop-filter:blur(24px) saturate(115%)!important;
+  -webkit-backdrop-filter:blur(24px) saturate(115%)!important;
+  transform:translateY(8px) scale(.985)!important;
+  transition:transform .2s ease,opacity .2s ease!important;
+}
+#loginOverlay.open .login-modal{transform:translateY(0) scale(1)!important}
+#loginOverlay .auth-close{
+  position:absolute;top:14px;right:14px;z-index:3;
+  width:34px;height:34px;display:grid;place-items:center;padding:0;
+  border:1px solid rgba(255,255,255,.08);border-radius:10px;
+  background:rgba(255,255,255,.035);color:#8d929d;
+  font:400 22px/1 Arial,sans-serif;cursor:pointer;transition:.16s ease;
+}
+#loginOverlay .auth-close:hover{color:#fff;background:rgba(255,255,255,.075);border-color:rgba(255,255,255,.14)}
+#loginOverlay .flux-auth-brand{justify-content:flex-start!important;gap:9px!important;margin:0 0 26px!important;color:#fff!important}
+#loginOverlay .flux-auth-brand-mark{width:24px!important;height:24px!important}
+#loginOverlay .flux-auth-brand span:last-child{font-size:22px!important;font-weight:900!important;letter-spacing:-.035em!important}
+#loginOverlay .login-reference-heading{
+  width:100%!important;max-width:none!important;min-height:0!important;
+  margin:0 0 24px!important;padding:0!important;border:0!important;border-radius:0!important;
+  background:none!important;box-shadow:none!important;display:block!important;overflow:visible!important;
+  transform:none!important;
+}
+#loginOverlay .login-reference-heading::before{display:none!important}
+#loginOverlay .login-reference-title{margin:0 0 8px!important;color:#f7f8fb!important;font-size:30px!important;line-height:1.05!important;font-weight:850!important;letter-spacing:-.04em!important}
+#loginOverlay .login-reference-subtitle{color:#8f949f!important;font-size:13px!important;line-height:1.45!important;font-weight:600!important}
+#loginOverlay .login-reference-subtitle .flux-word{position:static!important;color:#cfd3dc!important;font-size:13px!important;font-weight:800!important}
+#loginOverlay input{
+  width:100%!important;height:50px!important;margin:0 0 12px!important;padding:0 15px!important;
+  border:1px solid rgba(255,255,255,.075)!important;border-radius:14px!important;
+  background:#15171d!important;color:#f4f5f7!important;font-size:14px!important;
+  box-shadow:none!important;outline:none!important;
+  transition:border-color .16s ease,background .16s ease,box-shadow .16s ease!important;
+}
+#loginOverlay input::placeholder{color:#676c76!important;opacity:1}
+#loginOverlay input:hover{background:#181a21!important;border-color:rgba(255,255,255,.11)!important}
+#loginOverlay input:focus{background:#181a21!important;border-color:#316dff!important;box-shadow:0 0 0 3px rgba(49,109,255,.12)!important}
+#loginOverlay .auth-password-wrap{width:100%!important;margin:0!important}
+#loginOverlay .auth-password-wrap input{padding-right:88px!important;margin-bottom:12px!important}
+#loginOverlay .auth-show-password{
+  right:14px!important;top:25px!important;transform:translateY(-50%)!important;height:auto!important;
+  padding:6px 2px!important;border:0!important;background:transparent!important;color:#8c919b!important;
+  font-size:12px!important;font-weight:700!important;
+}
+#loginOverlay .auth-show-password:hover{color:#d8dbe2!important}
+#loginOverlay .auth-options{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:30px;margin:0 0 16px}
+#loginOverlay .auth-remember{display:flex;align-items:center;gap:8px;margin:0!important;color:#9da2ac!important;font-size:12px!important;font-weight:650!important;white-space:nowrap}
+#loginOverlay .auth-check{width:18px!important;height:18px!important;flex:0 0 18px;border:1px solid #474c57!important;border-radius:6px!important;background:#111319!important}
+#loginOverlay .auth-check.on{background:#2463f3!important;border-color:#2463f3!important}
+#loginOverlay .auth-check.on:after{font-size:11px!important}
+#loginOverlay .forgot-link{
+  display:block;width:auto!important;margin:0!important;padding:4px 0!important;border:0!important;background:transparent!important;
+  color:#8f949f!important;text-decoration:none!important;font-size:12px!important;font-weight:650!important;white-space:nowrap;cursor:pointer;
+}
+#loginOverlay .forgot-link:hover{color:#fff!important}
+#loginOverlay .auth-verified{display:none!important}
+#loginOverlay .btn.primary{
+  width:100%!important;height:50px!important;margin:0!important;border:1px solid rgba(255,255,255,.04)!important;border-radius:14px!important;
+  background:linear-gradient(135deg,#1d5cff,#3275ff)!important;color:#fff!important;font-size:14px!important;font-weight:800!important;
+  box-shadow:0 12px 28px rgba(29,92,255,.22)!important;transition:transform .16s ease,filter .16s ease,box-shadow .16s ease!important;
+}
+#loginOverlay .btn.primary:hover{filter:brightness(1.08)!important;transform:translateY(-1px)!important;box-shadow:0 15px 34px rgba(29,92,255,.28)!important}
+#loginOverlay .auth-switch{display:block;width:100%!important;margin:18px 0 0!important;padding:4px!important;border:0!important;background:transparent!important;color:#777c86!important;font-size:12px!important;font-weight:600!important;text-align:center!important;cursor:pointer!important}
+#loginOverlay .auth-switch b{color:#d9dce3!important;font-weight:750!important}
+#loginOverlay .auth-switch:hover b{color:#fff!important}
+#loginOverlay .auth-back{margin:0 0 22px!important;color:#8f949f!important;font-size:12px!important;font-weight:700!important}
+#loginOverlay .auth-back:hover{color:#fff!important}
+#loginOverlay .login-modal.auth-register .auth-remember{display:none!important}
+#loginOverlay .login-modal.auth-register .auth-options{justify-content:flex-end!important}
+#loginOverlay .login-modal.auth-register #authTitle,
+#loginOverlay .login-modal.auth-forgot #authTitle,
+#loginOverlay .login-modal.auth-verify-reset #authTitle,
+#loginOverlay .login-modal.auth-recovery #authTitle{font-size:28px!important;line-height:1.08!important;margin:0 0 8px!important;color:#f7f8fb!important}
+#loginOverlay .login-modal.auth-register #authText,
+#loginOverlay .login-modal.auth-forgot #authText,
+#loginOverlay .login-modal.auth-verify-reset #authText,
+#loginOverlay .login-modal.auth-recovery #authText{margin:0 0 22px!important;color:#8f949f!important;line-height:1.45!important}
+@media(max-width:520px){
+  #loginOverlay.login-overlay{padding:14px!important;align-items:center!important}
+  #loginOverlay .login-modal{width:100%!important;max-width:390px!important;padding:24px 20px!important;border-radius:20px!important;margin:0 auto!important}
+  #loginOverlay .flux-auth-brand{margin-bottom:22px!important}
+  #loginOverlay .login-reference-title{font-size:28px!important}
+  #loginOverlay .auth-options{gap:10px}
+}
+@media(max-width:360px){#loginOverlay .auth-options{align-items:flex-start;flex-direction:column;gap:8px}}
+</style>
+
 </head>
 <body>
 
@@ -2987,10 +3217,16 @@ input:focus,
     </span>Контакты</button>
   </nav>
   <div class="right-nav">
-   <div class="langs">
-    <button class="lang active" data-lang="ru">🇷🇺 RU</button>
-    <button class="lang" data-lang="uk">🇺🇦 UA</button>
-    <button class="lang" data-lang="en">🇬🇧 EN</button>
+   <div class="langs" id="languageSelector">
+    <button class="lang-current" id="langCurrent" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Выбрать язык">
+     <span class="lang-flag" id="langCurrentFlag" aria-hidden="true">🇷🇺</span>
+     <span class="lang-code" id="langCurrentCode">RU</span>
+     <svg class="lang-chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>
+    </button>
+    <div class="lang-menu" id="langMenu" role="listbox" aria-label="Язык сайта">
+     <button class="lang-option active" type="button" role="option" aria-selected="true" data-lang="ru"><span class="lang-flag" aria-hidden="true">🇷🇺</span><span class="lang-name">Русский</span><span class="lang-check" aria-hidden="true">✓</span></button>
+     <button class="lang-option" type="button" role="option" aria-selected="false" data-lang="en"><span class="lang-flag" aria-hidden="true">🇬🇧</span><span class="lang-name">English</span><span class="lang-check" aria-hidden="true">✓</span></button>
+    </div>
    </div>
    <button class="profile-pill" onclick="localStorage.getItem('flux_user') ? showTab('account') : openLogin()"><span class="profile-mini-avatar" id="topAvatar">F</span><span id="topProfileText">Профиль</span></button>
   </div>
@@ -3114,7 +3350,7 @@ input:focus,
    <p class="contacts-subtitle">Выберите удобный способ — мы всегда на связи и поможем.</p>
    <div class="contact-list">
     <button class="contact-row" onclick="window.open('https://t.me/FluxxDLC','_blank','noopener')"><span class="contact-left"><span class="contact-symbol">➤</span><b>Telegram</b></span><span class="contact-go">Перейти →</span></button>
-    <button class="contact-row" onclick="toast('Добавь свою Discord-ссылку в код сайта.')"><span class="contact-left"><span class="contact-symbol">♟</span><b>Discord</b></span><span class="contact-go">Перейти →</span></button>
+    <button class="contact-row" onclick="window.open('https://discord.com/channels/1542574644786241600/1542796583924539444', '_blank', 'noopener,noreferrer')"><span class="contact-left"><span class="contact-symbol">♟</span><b>Discord</b></span><span class="contact-go">Перейти →</span></button>
     <button class="contact-row" onclick="toast('Добавь свой email в код сайта.')"><span class="contact-left"><span class="contact-symbol">✉</span><b>Email</b></span><span class="contact-go">Перейти →</span></button>
    </div>
   </div>
@@ -3284,25 +3520,27 @@ input:focus,
 
 <div id="loginOverlay" class="login-overlay" aria-hidden="true">
  <div class="login-modal">
-<div class="flux-auth-brand"><span class="flux-auth-brand-mark"></span><span>FLUX</span></div>
-<button type="button" class="auth-back" id="authBack" onclick="setAuthMode('login')">← Назад ко входу</button>
-<div class="login-reference-heading" aria-label="С возвращением. Начни свой путь прямо сейчас · FLUX">
-  <div class="login-reference-title">С&nbsp;возвращением</div>
-  <div class="login-reference-subtitle">Начни свой путь прямо сейчас · <span class="flux-word">FLUX</span></div>
-</div>
-<h2 id="authTitle">С возвращением</h2>
-<p class="auth-subtitle" id="authText">Начни свой путь прямо сейчас · <b>FLUX</b></p>
-<input id="authLogin" placeholder="E-mail" autocomplete="username">
-<div class="auth-password-wrap">
-  <input id="authPass" type="password" placeholder="Введи пароль" autocomplete="current-password">
-  <button type="button" class="auth-show-password" onclick="toggleFluxPassword()">Показать</button>
-</div>
-<div class="auth-remember"><button type="button" class="auth-check on" id="fluxRemember" onclick="this.classList.toggle('on')" aria-label="Запомнить меня"></button><span>Запомнить меня</span></div>
-<div class="auth-verified"><span class="auth-verified-icon">✓</span><span>Проверено</span></div>
-<button class="btn primary" id="authSubmit" onclick="submitAuth()">Войти</button>
-<button class="forgot-link" id="forgotSwitch" type="button" onclick="toggleForgotMode()">Забыли пароль?</button>
-<button class="auth-switch" id="authSwitch" onclick="toggleAuthMode()">Нет аккаунта? <b>Зарегистрироваться</b></button>
-</div>
+  <button type="button" class="auth-close" onclick="closeLogin()" aria-label="Закрыть">×</button>
+  <div class="flux-auth-brand"><span class="flux-auth-brand-mark"></span><span>FLUX</span></div>
+  <button type="button" class="auth-back" id="authBack" onclick="setAuthMode('login')">← Назад ко входу</button>
+  <div class="login-reference-heading" aria-label="С возвращением. Начни свой путь прямо сейчас · FLUX">
+    <div class="login-reference-title">С&nbsp;возвращением</div>
+    <div class="login-reference-subtitle">Начни свой путь прямо сейчас · <span class="flux-word">FLUX</span></div>
+  </div>
+  <h2 id="authTitle">С возвращением</h2>
+  <p class="auth-subtitle" id="authText">Начни свой путь прямо сейчас · <b>FLUX</b></p>
+  <input id="authLogin" placeholder="E-mail" autocomplete="username">
+  <div class="auth-password-wrap">
+    <input id="authPass" type="password" placeholder="Введи пароль" autocomplete="current-password">
+    <button type="button" class="auth-show-password" onclick="toggleFluxPassword()">Показать</button>
+  </div>
+  <div class="auth-options">
+    <div class="auth-remember"><button type="button" class="auth-check on" id="fluxRemember" onclick="this.classList.toggle('on')" aria-label="Запомнить меня"></button><span>Запомнить меня</span></div>
+    <button class="forgot-link" id="forgotSwitch" type="button" onclick="toggleForgotMode()">Забыли пароль?</button>
+  </div>
+  <button class="btn primary" id="authSubmit" onclick="submitAuth()">Войти</button>
+  <button class="auth-switch" id="authSwitch" onclick="toggleAuthMode()">Нет аккаунта? <b>Зарегистрироваться</b></button>
+ </div>
 </div>
 
 </main>
@@ -3358,7 +3596,7 @@ downloadTitle:"Download<br><span>FLUX Loader.</span>",loaderText:"Windows client
 pricingTitle:"Choose<br><span>your FLUX.</span>",promoTitle:"Have a promo code?",promoText:"Enter the code before purchase.",applyPromo:"Apply",p1:"All core features",p2:"Client updates",p3:"Standard support",p4:"All FLUX features",p5:"Lifetime updates",p6:"Priority support",
 accountTitle:"Your<br><span>account.</span>",loginTitle:"FLUX Login",accountText:"Create a local demo account or sign in to an existing one.",login:"Sign in",register:"Create account",registerQuestion:"No account? Create one",loginQuestion:"Already have an account? Sign in",accountNote:"The demo stores data only in this browser. Real accounts require a server.",footer:"Minecraft Client"
 }};
-let lang="ru", mode="login";
+let lang=localStorage.getItem("flux_lang")==="en"?"en":"ru", mode="login";
 let tabSwitchTimer=null;
 function showTab(id){
  if((id==="account"||id==="security"||id==="referral"||id==="freeze"||id==="roulette"||id==="configs")
@@ -3386,12 +3624,69 @@ function showTab(id){
  }
 }
 document.querySelectorAll(".tab").forEach(x=>x.onclick=()=>showTab(x.dataset.tab));
-document.querySelectorAll(".lang").forEach(x=>x.onclick=()=>{lang=x.dataset.lang;document.querySelectorAll(".lang").forEach(y=>y.classList.toggle("active",y===x));applyLang()});
+const languageSelector=document.getElementById("languageSelector");
+const langCurrent=document.getElementById("langCurrent");
+const langCurrentFlag=document.getElementById("langCurrentFlag");
+const langCurrentCode=document.getElementById("langCurrentCode");
+const langMeta={ru:{flag:"🇷🇺",code:"RU"},en:{flag:"🇬🇧",code:"EN"}};
+function updateLanguageSelector(){
+ const meta=langMeta[lang]||langMeta.ru;
+ if(langCurrentFlag) langCurrentFlag.textContent=meta.flag;
+ if(langCurrentCode) langCurrentCode.textContent=meta.code;
+ document.querySelectorAll(".lang-option").forEach(option=>{
+   const active=option.dataset.lang===lang;
+   option.classList.toggle("active",active);
+   option.setAttribute("aria-selected",active?"true":"false");
+ });
+}
+function closeLanguageMenu(){
+ if(!languageSelector) return;
+ languageSelector.classList.remove("open");
+ if(langCurrent) langCurrent.setAttribute("aria-expanded","false");
+}
+function setLanguage(nextLang){
+ if(!langMeta[nextLang]) return;
+ lang=nextLang;
+ localStorage.setItem("flux_lang",lang);
+ updateLanguageSelector();
+ applyLang();
+ closeLanguageMenu();
+}
+if(langCurrent){
+ langCurrent.addEventListener("click",event=>{
+   event.stopPropagation();
+   const opened=languageSelector.classList.toggle("open");
+   langCurrent.setAttribute("aria-expanded",opened?"true":"false");
+ });
+}
+document.querySelectorAll(".lang-option").forEach(option=>option.addEventListener("click",event=>{
+ event.stopPropagation();
+ setLanguage(option.dataset.lang);
+}));
+document.addEventListener("click",event=>{
+ if(languageSelector && !languageSelector.contains(event.target)) closeLanguageMenu();
+});
+document.addEventListener("keydown",event=>{
+ if(event.key==="Escape") closeLanguageMenu();
+});
+updateLanguageSelector();
+applyLang();
 function applyLang(){
  const t=T[lang];document.documentElement.lang=lang;
- document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.dataset.i18n;if(t[k]!=null)el.innerHTML=t[k]});
- document.getElementById("accountAction").textContent=mode==="login"?t.login:t.register;
- document.getElementById("switch").textContent=mode==="login"?t.registerQuestion:t.loginQuestion;
+ document.querySelectorAll("[data-i18n]").forEach(el=>{
+   const k=el.dataset.i18n;if(t[k]==null)return;
+   const navIcon=el.querySelector(":scope > .nav-ref-icon");
+   if(navIcon){
+     [...el.childNodes].forEach(node=>{if(node!==navIcon)node.remove()});
+     el.append(document.createTextNode(t[k]));
+   }else{
+     el.innerHTML=t[k];
+   }
+ });
+ const accountActionBtn=document.getElementById("accountAction");
+ const switchBtn=document.getElementById("switch");
+ if(accountActionBtn) accountActionBtn.textContent=mode==="login"?t.login:t.register;
+ if(switchBtn) switchBtn.textContent=mode==="login"?t.registerQuestion:t.loginQuestion;
 }
 function toast(s){const x=document.getElementById("toast");x.textContent=s;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),2400)}
 function toggleMode(){mode=mode==="login"?"register":"login";document.getElementById("accountHeading").textContent=mode==="login"?T[lang].loginTitle:T[lang].register;applyLang()}
