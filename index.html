@@ -2548,6 +2548,33 @@ input:focus,
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+/* ===== FLUX password recovery ===== */
+.login-modal.auth-forgot .auth-password-wrap,
+.login-modal.auth-forgot .auth-remember,
+.login-modal.auth-forgot .auth-verified{
+  display:none!important;
+}
+.login-modal.auth-recovery #authLogin,
+.login-modal.auth-recovery .auth-remember,
+.login-modal.auth-recovery .auth-verified,
+.login-modal.auth-recovery #forgotSwitch,
+.login-modal.auth-recovery #authSwitch{
+  display:none!important;
+}
+.login-modal.auth-recovery .auth-back{display:none!important}
+.login-modal.auth-recovery .login-reference-heading{display:none!important}
+.login-modal.auth-recovery #authTitle,
+.login-modal.auth-recovery #authText{display:block!important}
+.login-modal.auth-recovery #authTitle{
+  font-size:32px!important;
+  font-weight:800!important;
+  margin:0 0 10px!important;
+}
+.login-modal.auth-recovery #authText{margin:0 0 38px!important}
+</style>
+
 </head>
 <body>
 <header class="top">
@@ -3076,9 +3103,14 @@ function logout(){localStorage.removeItem('flux_user');toast(lang==='en'?'Logged
     const forgot=document.getElementById("forgotSwitch");
 
     if(modal){
-      modal.classList.remove("auth-login","auth-register","auth-forgot");
+      modal.classList.remove("auth-login","auth-register","auth-forgot","auth-recovery");
       modal.classList.add("auth-"+authMode);
     }
+
+    // Reset visibility that can be changed by recovery mode.
+    if(login) login.style.display="";
+    if(sw) sw.style.display="";
+    if(forgot) forgot.style.display="";
 
     if(authMode==="register"){
       title.textContent="Создание аккаунта";
@@ -3090,13 +3122,22 @@ function logout(){localStorage.removeItem('flux_user');toast(lang==='en'?'Logged
       sw.innerHTML='Уже есть аккаунт? <b>Войти</b>';
       forgot.style.display="none";
     }else if(authMode==="forgot"){
-      title.textContent="Восстановление пароля";
-      text.innerHTML='Задай новый пароль для аккаунта · <b>FLUX</b>';
+      title.textContent="Забыли пароль?";
+      text.innerHTML='Введи e-mail аккаунта — мы отправим ссылку для восстановления.';
       login.placeholder="E-mail";
+      pass.value="";
+      submit.textContent="Отправить ссылку";
+      sw.innerHTML='Вернуться ко <b>входу</b>';
+      forgot.style.display="none";
+    }else if(authMode==="recovery"){
+      title.textContent="Новый пароль";
+      text.innerHTML='Придумай новый пароль для аккаунта · <b>FLUX</b>';
+      login.style.display="none";
+      pass.value="";
       pass.placeholder="Новый пароль";
       pass.autocomplete="new-password";
-      submit.textContent="Сбросить пароль";
-      sw.innerHTML='Вернуться ко <b>входу</b>';
+      submit.textContent="Сохранить новый пароль";
+      sw.style.display="none";
       forgot.style.display="none";
     }else{
       title.textContent="С возвращением";
@@ -3459,6 +3500,7 @@ document.addEventListener("keydown",e=>{
     const modal=document.querySelector(".login-modal");
     if(modal && modal.classList.contains("auth-register")) return "register";
     if(modal && modal.classList.contains("auth-forgot")) return "forgot";
+    if(modal && modal.classList.contains("auth-recovery")) return "recovery";
     return "login";
   }
 
@@ -3468,12 +3510,44 @@ document.addEventListener("keydown",e=>{
     const mode=currentAuthMode();
     const btn=document.getElementById("authSubmit");
 
+    // After the user follows the link from the e-mail, Supabase opens this mode.
+    if(mode==="recovery"){
+      if(!pass){
+        toast("Введи новый пароль.");
+        return;
+      }
+      if(pass.length<6){
+        toast("Пароль должен быть не короче 6 символов.");
+        return;
+      }
+
+      if(btn) btn.disabled=true;
+      try{
+        const {data,error}=await fluxSupabase.auth.updateUser({password:pass});
+        if(error) throw error;
+
+        updateVisibleAccount(data.user);
+        toast("Пароль успешно изменён.");
+        if(history.replaceState){
+          history.replaceState({}, document.title, location.pathname + location.search);
+        }
+        if(typeof closeLogin==="function") closeLogin();
+        if(typeof showTab==="function") showTab("account");
+      }catch(error){
+        console.error(error);
+        toast(niceError(error));
+      }finally{
+        if(btn) btn.disabled=false;
+      }
+      return;
+    }
+
     if(!email || (mode!=="forgot" && !pass)){
       toast(mode==="forgot" ? "Введи e-mail." : "Введи e-mail и пароль.");
       return;
     }
     if(!email.includes("@")){
-      toast("Для аккаунта нужен e-mail.");
+      toast("Для аккаунта нужен правильный e-mail.");
       return;
     }
 
@@ -3500,11 +3574,13 @@ document.addEventListener("keydown",e=>{
       }
 
       if(mode==="forgot"){
+        const redirectUrl = location.origin + location.pathname;
         const {error} = await fluxSupabase.auth.resetPasswordForEmail(email, {
-          redirectTo: location.origin + location.pathname
+          redirectTo: redirectUrl
         });
         if(error) throw error;
-        toast("Письмо для восстановления отправлено на e-mail.");
+
+        toast("Ссылка для восстановления отправлена на e-mail.");
         if(typeof setAuthMode==="function") setAuthMode("login");
         return;
       }
@@ -3548,8 +3624,18 @@ document.addEventListener("keydown",e=>{
     updateVisibleAccount(data.session ? data.session.user : null);
   }
 
-  fluxSupabase.auth.onAuthStateChange((_event, session)=>{
+  fluxSupabase.auth.onAuthStateChange((event, session)=>{
     updateVisibleAccount(session ? session.user : null);
+
+    if(event==="PASSWORD_RECOVERY"){
+      const overlay=document.getElementById("loginOverlay");
+      if(overlay){
+        overlay.classList.add("open");
+        overlay.setAttribute("aria-hidden","false");
+      }
+      if(typeof setAuthMode==="function") setAuthMode("recovery");
+      setTimeout(()=>document.getElementById("authPass")?.focus(),0);
+    }
   });
 
   if(document.readyState==="loading"){
