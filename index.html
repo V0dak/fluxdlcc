@@ -651,24 +651,25 @@ body{background-image:none !important;}
 /* Smooth login heading block instead of the raster reference image */
 .login-reference-heading{
   width:100%;
-  max-width:344px;
-  min-height:112px;
-  margin:0 auto 34px!important;
-  padding:20px 22px 18px!important;
+  max-width:386px;
+  min-height:118px;
+  margin:0 auto 28px!important;
+  padding:20px 20px 18px!important;
   border-radius:22px;
   position:relative;
   overflow:hidden;
   display:flex;
   flex-direction:column;
   justify-content:center;
-  gap:10px;
+  gap:8px;
   background:
     radial-gradient(120% 140% at 0% 0%, rgba(39,67,143,.16), transparent 45%),
     linear-gradient(180deg, rgba(17,20,29,.96), rgba(12,14,19,.92));
-  border:1px solid rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.07);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.03),
     0 18px 50px rgba(0,0,0,.28);
+  box-sizing:border-box;
 }
 .login-reference-heading::before{
   content:"";
@@ -680,10 +681,14 @@ body{background-image:none !important;}
 .login-reference-title{
   margin:0;
   color:#fff;
-  font-size:clamp(28px, 5vw, 37px);
-  line-height:1.03;
+  font-size:29px;
+  line-height:1.06;
   font-weight:900;
   letter-spacing:-.04em;
+  white-space:normal;
+  word-break:keep-all;
+  overflow-wrap:normal;
+  hyphens:none;
   text-wrap:balance;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
@@ -692,7 +697,7 @@ body{background-image:none !important;}
 .login-reference-subtitle{
   color:#d4d9e5;
   font-size:14px;
-  line-height:1.45;
+  line-height:1.42;
   font-weight:600;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
@@ -715,10 +720,13 @@ body{background-image:none !important;}
   .login-reference-heading{
     max-width:100%;
     padding:18px 18px 16px!important;
-    min-height:104px;
-    margin-bottom:28px!important;
+    min-height:108px;
+    margin-bottom:24px!important;
   }
-  .login-reference-title{font-size:clamp(26px, 8vw, 32px)}
+  .login-reference-title{
+    font-size:27px;
+    line-height:1.08;
+  }
 }
 </style>
 
@@ -2813,6 +2821,35 @@ input:focus,
 }
 </style>
 
+
+<style>
+/* Login top/header polish */
+.flux-auth-brand{
+  margin-bottom:26px!important;
+  gap:12px!important;
+}
+.flux-auth-brand-mark{
+  width:26px!important;
+  height:26px!important;
+  background:url("flux-star.png") center/contain no-repeat!important;
+}
+.flux-auth-brand span:last-child{
+  font-size:25px!important;
+  line-height:1!important;
+  letter-spacing:-.03em!important;
+}
+.login-modal{
+  width:min(424px,100%)!important;
+  margin:34px auto 28px!important;
+}
+.login-modal input{
+  border-radius:18px!important;
+}
+.auth-verified{
+  border-radius:18px!important;
+}
+</style>
+
 </head>
 <body>
 <header class="top">
@@ -2957,7 +2994,7 @@ input:focus,
    <h2>Контакты</h2>
    <p class="contacts-subtitle">Выберите удобный способ — мы всегда на связи и поможем.</p>
    <div class="contact-list">
-    <button class="contact-row" onclick="toast('Добавь свою Telegram-ссылку в код сайта.')"><span class="contact-left"><span class="contact-symbol">➤</span><b>Telegram</b></span><span class="contact-go">Перейти →</span></button>
+    <button class="contact-row" onclick="window.open('https://t.me/FluxxDLC','_blank','noopener')"><span class="contact-left"><span class="contact-symbol">➤</span><b>Telegram</b></span><span class="contact-go">Перейти →</span></button>
     <button class="contact-row" onclick="toast('Добавь свою Discord-ссылку в код сайта.')"><span class="contact-left"><span class="contact-symbol">♟</span><b>Discord</b></span><span class="contact-go">Перейти →</span></button>
     <button class="contact-row" onclick="toast('Добавь свой email в код сайта.')"><span class="contact-left"><span class="contact-symbol">✉</span><b>Email</b></span><span class="contact-go">Перейти →</span></button>
    </div>
@@ -3131,7 +3168,7 @@ input:focus,
 <div class="flux-auth-brand"><span class="flux-auth-brand-mark"></span><span>FLUX</span></div>
 <button type="button" class="auth-back" id="authBack" onclick="setAuthMode('login')">← Назад ко входу</button>
 <div class="login-reference-heading" aria-label="С возвращением. Начни свой путь прямо сейчас · FLUX">
-  <div class="login-reference-title">С возвращением</div>
+  <div class="login-reference-title">С&nbsp;возвращением</div>
   <div class="login-reference-subtitle">Начни свой путь прямо сейчас · <span class="flux-word">FLUX</span></div>
 </div>
 <h2 id="authTitle">С возвращением</h2>
