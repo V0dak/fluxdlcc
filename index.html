@@ -2737,6 +2737,82 @@ input:focus,
 }
 </style>
 
+
+<style>
+/* Centered FunPay purchase modal */
+#purchaseOverlay.purchase-overlay{
+  justify-content:center!important;
+  align-items:center!important;
+  padding:24px!important;
+}
+#purchaseOverlay.purchase-overlay .purchase-modal{
+  width:min(640px, 100%)!important;
+  max-width:640px!important;
+  height:auto!important;
+  max-height:min(90vh, 820px)!important;
+  border-left:0!important;
+  border-radius:26px!important;
+  padding:28px 28px 24px!important;
+  margin:0 auto!important;
+  overflow:auto!important;
+}
+#purchaseOverlay.purchase-overlay .purchase-head{
+  align-items:center!important;
+}
+#purchaseOverlay.purchase-overlay .purchase-head h3{
+  width:100%;
+  text-align:left;
+  font-size:20px;
+}
+#purchaseOverlay.purchase-overlay .purchase-product{
+  align-items:center!important;
+}
+#purchaseOverlay.purchase-overlay .purchase-label-centered{
+  text-align:center!important;
+}
+#purchaseOverlay.purchase-overlay .server-options-single{
+  grid-template-columns:1fr!important;
+  max-width:320px;
+  margin:0 auto 4px!important;
+}
+#purchaseOverlay.purchase-overlay .server-btn{
+  width:100%;
+}
+#purchaseOverlay.purchase-overlay .server-card-icon.funpay{
+  color:#fff;
+  background:#15284f;
+  border:1px solid #2d6cff;
+  font-size:12px;
+  letter-spacing:.04em;
+}
+#purchaseOverlay.purchase-overlay .purchase-summary{
+  margin-top:20px!important;
+}
+#purchaseOverlay.purchase-overlay .summary-row.total{
+  align-items:center!important;
+}
+#purchaseOverlay.purchase-overlay .pay-btn{
+  display:block!important;
+  width:min(100%, 420px)!important;
+  margin:18px auto 0!important;
+  text-align:center!important;
+}
+#purchaseOverlay.purchase-overlay .pay-note{
+  text-align:center!important;
+  margin-top:12px!important;
+}
+@media(max-width:650px){
+  #purchaseOverlay.purchase-overlay{
+    padding:16px!important;
+  }
+  #purchaseOverlay.purchase-overlay .purchase-modal{
+    width:100%!important;
+    padding:22px 18px 18px!important;
+    border-radius:22px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <header class="top">
@@ -3076,19 +3152,14 @@ input:focus,
 </main>
 <footer><div class="container"><span>FLUX © 2026</span><span data-i18n="footer">Minecraft Client</span></div></footer>
 <div class="purchase-overlay" id="purchaseOverlay" onclick="if(event.target===this)closePurchase()">
- <aside class="purchase-modal">
+ <aside class="purchase-modal purchase-modal-funpay">
   <div class="purchase-head"><h3>Покупка товара</h3><button class="purchase-close" onclick="closePurchase()">×</button></div>
   <div class="purchase-product"><span id="purchaseProductName">Товар</span><strong id="purchaseBase">0 ₽</strong></div>
-  <div class="purchase-label">Выберите сервер</div>
-  <div class="server-options">
-   <button class="server-btn active" data-server="Мир" onclick="selectServer(this)">
-    <span class="server-card-icon world">◎</span>
-    <span class="server-card-copy"><b>Мир</b><small>Международный сервер</small></span>
-    <span class="server-card-check">✓</span>
-   </button>
-   <button class="server-btn" data-server="СПБ" onclick="selectServer(this)">
-    <span class="server-card-icon ru">RU</span>
-    <span class="server-card-copy"><b>СПБ</b><small>Сервер в России</small></span>
+  <div class="purchase-label purchase-label-centered">Способ оплаты</div>
+  <div class="server-options server-options-single">
+   <button class="server-btn active" data-server="FunPay" onclick="selectServer(this)">
+    <span class="server-card-icon funpay">FP</span>
+    <span class="server-card-copy"><b>FunPay</b><small>Оплата через FunPay</small></span>
     <span class="server-card-check">✓</span>
    </button>
   </div>
@@ -3096,8 +3167,8 @@ input:focus,
   <div class="purchase-promo"><input id="purchasePromo" placeholder="Введите промокод"><button onclick="applyPurchasePromo()">Применить</button></div>
   <div class="promo-success" id="purchasePromoSuccess">✓ Промокод применён! Скидка 7%</div>
   <div class="purchase-summary"><div class="summary-row"><span>Скидка</span><strong id="purchaseDiscount">−0 ₽</strong></div><div class="summary-row total"><span>Итого</span><strong id="purchaseTotal">0 ₽</strong></div></div>
-  <button class="pay-btn" onclick="continuePayment()">Оплатить</button>
-  <div class="pay-note">Выбранный сервер: <span id="purchaseServer">Мир</span>. Реальную оплату подключи к своему платёжному провайдеру.</div>
+  <button class="pay-btn" onclick="continuePayment()">Перейти на FunPay</button>
+  <div class="pay-note">Выбранный способ оплаты: <span id="purchaseServer">FunPay</span>. После нажатия откроется страница продавца на FunPay.</div>
  </aside>
 </div>
 <div id="toast"></div>
@@ -3174,7 +3245,7 @@ function downloadLoader(){
  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="FLUX-Loader.exe";a.click();URL.revokeObjectURL(a.href);toast(lang==="en"?"Loader downloaded.":lang==="uk"?"Лоадер завантажено.":"Лоадер скачан.");
 }
 function buyProduct(name,price){
- window.purchase={name,price,server:"Мир",discount:0};
+ window.purchase={name,price,server:"FunPay",discount:0};
  document.getElementById("purchaseProductName").textContent=name;
  document.getElementById("purchaseBase").textContent=price+" ₽";
  document.getElementById("purchasePromo").value="";
@@ -3190,7 +3261,8 @@ function selectServer(btn){
 }
 function applyPurchasePromo(){
  const input=document.getElementById("purchasePromo").value.trim();
- const valid=input.toLowerCase()==="";
+ const lowered=input.toLowerCase();
+ const valid=lowered==="v0dak" || lowered==="happy";
  window.purchase.discount=valid?7:0;
  document.getElementById("purchasePromoSuccess").classList.toggle("show",valid);
  if(!valid && input) toast("Неверный промокод.");
@@ -3202,12 +3274,12 @@ function updatePurchaseTotal(){
  const total=window.purchase.price-discount;
  document.getElementById("purchaseDiscount").textContent="−"+discount+" ₽";
  document.getElementById("purchaseTotal").textContent=total+" ₽";
- document.querySelector(".pay-btn").textContent="Оплатить "+total+" ₽";
+ document.querySelector(".pay-btn").textContent="Перейти на FunPay";
 }
 function continuePayment(){
  if(!window.purchase)return;
- const total=document.getElementById("purchaseTotal").textContent;
- toast("Заказ создан: "+window.purchase.name+" · "+window.purchase.server+" · "+total);
+ const url="https://funpay.com/users/17146757/";
+ window.open(url, "_blank", "noopener");
 }
 function closePurchase(){document.getElementById("purchaseOverlay").classList.remove("open");}
 function buy(price){buyProduct("Подписка FLUX",price);}
@@ -3528,13 +3600,8 @@ document.addEventListener("DOMContentLoaded",function(){
     <div class="purchase-divider"></div>
     <div class="purchase-label">Способ оплаты</div>
 
-    <div class="payment-methods">
+    <div class="payment-methods" style="grid-template-columns:minmax(0,340px);justify-content:center;">
       <button class="payment-method active" type="button" onclick="selectPayment(this)">
-        <span class="payment-card-icon"><i></i><i></i></span>
-        <span><b>Карта / СБП</b><small>Visa · Mastercard · МИР · СБП</small></span>
-        <span class="payment-check">✓</span>
-      </button>
-      <button class="payment-method" type="button" onclick="selectPayment(this)">
         <span class="funpay-mark">FUN<span>PAY</span></span>
         <span><b>FunPay</b><small>Оплата через FunPay</small></span>
         <span class="payment-check">✓</span>
@@ -3564,7 +3631,7 @@ window.openPurchase=function(title,price){
   purchaseDiscount=0;
   document.getElementById("purchaseTitle").textContent=title||"Подписка FLUX";
   document.getElementById("purchasePrice").textContent=purchaseBasePrice+" ₽";
-  document.getElementById("purchasePay").textContent="Оплатить "+purchaseBasePrice+" ₽";
+  document.getElementById("purchasePay").textContent="Перейти на FunPay";
   document.getElementById("purchasePromo").value="";
   document.getElementById("promoStatus").textContent="";
   const o=document.getElementById("purchaseOverlay");
@@ -3586,16 +3653,16 @@ window.applyPurchasePromo=function(){
     const total=Math.round(purchaseBasePrice*(1-purchaseDiscount/100));
     status.textContent="Промокод применён: скидка 10%";
     document.getElementById("purchasePrice").textContent=total+" ₽";
-    document.getElementById("purchasePay").textContent="Оплатить "+total+" ₽";
+    document.getElementById("purchasePay").textContent="Перейти на FunPay";
   }else{
     purchaseDiscount=0;
     status.textContent=code ? "Промокод недействителен" : "";
     document.getElementById("purchasePrice").textContent=purchaseBasePrice+" ₽";
-    document.getElementById("purchasePay").textContent="Оплатить "+purchaseBasePrice+" ₽";
+    document.getElementById("purchasePay").textContent="Перейти на FunPay";
   }
 }
 window.completePurchase=function(){
-  if(typeof toast==="function") toast("Оплата будет доступна после подключения платёжной системы.");
+  window.open("https://funpay.com/users/17146757/","_blank","noopener");
 }
 document.addEventListener("click",e=>{
   if(e.target && e.target.id==="purchaseOverlay") closePurchase();
