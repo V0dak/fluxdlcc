@@ -648,31 +648,77 @@ body{background-image:none !important;}
 
 
 <style>
-/* Exact uploaded login heading reference, with FLUX replacing Velka */
+/* Smooth login heading block instead of the raster reference image */
 .login-reference-heading{
-  width:328px;
-  max-width:100%;
-  height:99px;
-  margin:0 0 39px 0;
+  width:100%;
+  max-width:344px;
+  min-height:112px;
+  margin:0 auto 34px!important;
+  padding:20px 22px 18px!important;
+  border-radius:22px;
   position:relative;
-  background:url("login-heading-reference.png") left top/257px 99px no-repeat;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:10px;
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgba(39,67,143,.16), transparent 45%),
+    linear-gradient(180deg, rgba(17,20,29,.96), rgba(12,14,19,.92));
+  border:1px solid rgba(255,255,255,.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.03),
+    0 18px 50px rgba(0,0,0,.28);
 }
-.login-reference-heading .flux-word{
+.login-reference-heading::before{
+  content:"";
   position:absolute;
-  left:260px;
-  top:65px;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+}
+.login-reference-title{
+  margin:0;
   color:#fff;
-  font-family:Arial,Helvetica,sans-serif;
+  font-size:clamp(28px, 5vw, 37px);
+  line-height:1.03;
+  font-weight:900;
+  letter-spacing:-.04em;
+  text-wrap:balance;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+.login-reference-subtitle{
+  color:#d4d9e5;
   font-size:14px;
-  line-height:17px;
-  font-weight:700;
-  letter-spacing:0;
+  line-height:1.45;
+  font-weight:600;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+.login-reference-subtitle .flux-word{
+  position:static!important;
+  display:inline;
+  margin-left:4px;
+  color:#fff;
+  font-size:15px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:-.02em;
   white-space:nowrap;
 }
 .login-modal #authTitle,
 .login-modal #authText{display:none!important}
 @media(max-width:480px){
-  .login-reference-heading{transform-origin:left top;transform:scale(.92);margin-bottom:31px}
+  .login-reference-heading{
+    max-width:100%;
+    padding:18px 18px 16px!important;
+    min-height:104px;
+    margin-bottom:28px!important;
+  }
+  .login-reference-title{font-size:clamp(26px, 8vw, 32px)}
 }
 </style>
 
@@ -2617,6 +2663,80 @@ input:focus,
 }
 </style>
 
+
+<style>
+/* Final login modal polish */
+.login-modal,
+.login-modal *{
+  box-sizing:border-box;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+.login-modal{
+  max-width:430px!important;
+}
+.login-modal input,
+.login-modal .btn.primary,
+.login-modal .auth-verified,
+.login-modal .auth-switch,
+.login-modal .forgot-link{
+  width:100%;
+}
+.login-modal input{
+  display:block;
+  margin:0 0 14px!important;
+}
+.auth-password-wrap{
+  width:100%;
+  margin:0 0 14px!important;
+}
+.auth-password-wrap input{
+  margin:0!important;
+}
+.auth-show-password{
+  right:16px;
+  top:50%;
+  transform:translateY(-50%);
+  height:auto;
+  display:flex;
+  align-items:center;
+}
+.auth-remember{
+  margin:2px 0 14px!important;
+}
+.auth-verified{
+  min-height:56px;
+  padding:0 16px!important;
+  gap:12px!important;
+  border-color:rgba(255,255,255,.10)!important;
+  background:rgba(255,255,255,.02);
+}
+.auth-verified-icon{
+  flex:0 0 25px;
+}
+.login-modal .btn.primary{
+  display:block;
+  height:48px!important;
+  margin-top:2px!important;
+}
+.forgot-link{
+  text-align:center;
+  margin:14px auto 0!important;
+}
+.login-modal .auth-switch{
+  display:block;
+  text-align:center;
+  margin-top:32px!important;
+}
+@media(max-width:480px){
+  .login-modal{
+    width:min(410px,100%)!important;
+    margin:26px auto 24px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <header class="top">
@@ -2934,7 +3054,10 @@ input:focus,
  <div class="login-modal">
 <div class="flux-auth-brand"><span class="flux-auth-brand-mark"></span><span>FLUX</span></div>
 <button type="button" class="auth-back" id="authBack" onclick="setAuthMode('login')">← Назад ко входу</button>
-<div class="login-reference-heading" aria-label="С возвращением. Начни свой путь прямо сейчас · FLUX"><span class="flux-word">FLUX</span></div>
+<div class="login-reference-heading" aria-label="С возвращением. Начни свой путь прямо сейчас · FLUX">
+  <div class="login-reference-title">С возвращением</div>
+  <div class="login-reference-subtitle">Начни свой путь прямо сейчас · <span class="flux-word">FLUX</span></div>
+</div>
 <h2 id="authTitle">С возвращением</h2>
 <p class="auth-subtitle" id="authText">Начни свой путь прямо сейчас · <b>FLUX</b></p>
 <input id="authLogin" placeholder="E-mail" autocomplete="username">
