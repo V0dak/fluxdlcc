@@ -1,5 +1,6 @@
 /* ===== FLUX Supabase Auth ===== */
 (function(){
+  const REFERRAL_BASE = "https://v0dak.github.io/fluxdlcc/";
   const SUPABASE_URL = "https://hgxjpocdjhlpkfaxmadh.supabase.co";
   const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_RMcP26AnepYSxMBoSZSztQ_nyaeztye";
 
@@ -67,8 +68,20 @@
 
     const referral=document.getElementById("referralLink");
     if(referral){
-      referral.textContent=location.origin+location.pathname+"?ref="+encodeURIComponent(name||"");
+      referral.textContent=REFERRAL_BASE+"?ref="+encodeURIComponent(name||"");
     }
+
+    // New users start with 0 subscription days until purchase/activation is wired to backend data.
+    const subscriptionValue=document.getElementById("subscriptionValue");
+    const subscriptionDaysFreeze=document.getElementById("subscriptionDaysFreeze");
+    const subscriptionStatusTitle=document.getElementById("subscriptionStatusTitle");
+    const subscriptionStatusText=document.getElementById("subscriptionStatusText");
+    const subscriptionEndsAt=document.getElementById("subscriptionEndsAt");
+    if(subscriptionValue) subscriptionValue.textContent="0 дней · не активна";
+    if(subscriptionDaysFreeze) subscriptionDaysFreeze.textContent="0 дн.";
+    if(subscriptionStatusTitle) subscriptionStatusTitle.textContent="Подписки нет";
+    if(subscriptionStatusText) subscriptionStatusText.textContent="Сначала купи или активируй подписку, чтобы использовать заморозку.";
+    if(subscriptionEndsAt) subscriptionEndsAt.textContent="—";
   }
 
   function niceError(error){

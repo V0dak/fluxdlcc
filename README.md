@@ -24,3 +24,21 @@
 ## Важно
 
 Существующая авторизация через Supabase сохранена. Покупка через FunPay и промокоды по-прежнему работают на клиентской стороне так же, как в исходной версии; для серверной проверки лицензий/покупок понадобится отдельная серверная логика и схема базы данных.
+
+
+## Referral / subscription defaults
+- Referral links use `https://v0dak.github.io/fluxdlcc/?ref=<nickname>`.
+- Every account displays `0` subscription days initially until a real purchase/activation backend updates it.
+
+
+## V0dak config
+The storefront shows only the V0dak config at 50 ₽. The paid `V0dak.json` is intentionally not included in public site assets; deliver it after payment or through a protected backend.
+
+
+## Roulette fix
+Roulette state is now per account, resets at 01:00 MSK, and a spin is only consumed after the animation finishes. Legacy `flux_roulette` state is ignored.
+
+
+## Latest fixes
+- Unified action-button states across all themes; black theme no longer produces bright white buttons.
+- Roulette is weighted: 1-day subscription 2%, 7-day subscription 1%, Beta 0.5%.

@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>FLUX — Minecraft Client</title>
 
-<link rel="icon" type="image/png" sizes="64x64" href="assets/images/favicon.png">
-<link rel="shortcut icon" href="assets/images/favicon.ico">
-
 
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/auth.css">
@@ -189,40 +186,24 @@
 </section>
 
 <section class="page" id="configs">
- <div class="container">
+ <div class="container config-store-single">
   <div class="section-title">
    <div class="kicker">05 — CONFIG STORE</div>
-   <h2>Конфиги<br><span>FLUX.</span></h2>
+   <h2>Конфиг<br><span>FLUX.</span></h2>
   </div>
-  <div class="prices two">
-   <article class="price featured">
+  <div class="prices config-single-grid">
+   <article class="price featured config-product-card">
     <small>CONFIG · V0DAK</small>
     <h3>Конфиг V0dak</h3>
-    <div class="amount">V0dak</div>
+    <p>Готовая конфигурация FLUX с настроенными модулями и параметрами.</p>
+    <div class="amount">50 ₽</div>
     <ul>
-     <li>Готовая конфигурация FLUX</li>
-     <li>Оптимизированные настройки</li>
-     <li>Обновления конфигурации</li>
+     <li>Готовый конфиг V0dak</li>
+     <li>Настроенные модули FLUX</li>
+     <li>Выдача файла после оплаты</li>
     </ul>
-    <button class="btn primary config-active" data-action="open-config" data-config="V0dak">Открыть</button>
+    <button class="btn primary config-active" data-action="open-config" data-config="V0dak">Купить за 50 ₽</button>
    </article>
-   <article class="price featured">
-    <small>CONFIG · HAPPY</small>
-    <h3>Happy</h3>
-    <div class="amount">Happy</div>
-    <ul>
-     <li>Готовая конфигурация FLUX</li>
-     <li>Удобные игровые настройки</li>
-     <li>Быстрая установка</li>
-    </ul>
-    <button class="btn primary config-active" data-action="open-config" data-config="Happy">Открыть</button>
-   </article>
-  </div>
-  <div class="promo promo-spaced">
-   <div>
-    <h3 class="compact-title">Другие конфиги</h3>
-    <p class="muted-small">Пока недоступны.</p>
-   </div>
   </div>
  </div>
 </section>
@@ -232,11 +213,11 @@
   <div class="profile-sidebar">
    <div class="profile-user"><div class="profile-avatar">V</div><div><strong class="account-name">—</strong><span data-i18n="profileRole">Пользователь</span></div></div>
    <div class="side-menu">
-    <button class="side-item active"><b data-i18n="sideHome">Главная</b></button>
-    <button class="side-item"><span>◈</span><b data-i18n="sideSecurity">Безопасность</b></button>
-    <button class="side-item"><span>♧</span><b data-i18n="sideReferral">Реферальная программа</b></button>
-    <label data-i18n="sideSubscription">ПОДПИСКА</label><button class="side-item"><span>◈</span><b data-i18n="sideFreeze">Заморозка</b></button>
-    <label data-i18n="sideFun">РАЗВЛЕЧЕНИЯ</label><button class="side-item"><span>◌</span><b data-i18n="sideRoulette">Рулетка</b></button>
+    <button class="side-item active" data-action="navigate-profile" data-profile-target="account"><b data-i18n="sideHome">Главная</b></button>
+    <button class="side-item" data-action="navigate-profile" data-profile-target="security"><span>◈</span><b data-i18n="sideSecurity">Безопасность</b></button>
+    <button class="side-item" data-action="navigate-profile" data-profile-target="referral"><span>♧</span><b data-i18n="sideReferral">Реферальная программа</b></button>
+    <label data-i18n="sideSubscription">ПОДПИСКА</label><button class="side-item" data-action="navigate-profile" data-profile-target="freeze"><span>◈</span><b data-i18n="sideFreeze">Заморозка</b></button>
+    <label data-i18n="sideFun">РАЗВЛЕЧЕНИЯ</label><button class="side-item" data-action="navigate-profile" data-profile-target="roulette"><span>◌</span><b data-i18n="sideRoulette">Рулетка</b></button>
     <label data-i18n="sideShop">МАГАЗИН</label><button class="side-item config-nav" data-action="show-tab" data-tab-target="configs"><span>◌</span><b data-i18n="sideConfigs">Конфиги</b></button>
    </div>
    <button class="logout" data-action="logout" data-i18n="logout">↪ &nbsp; Выйти</button>
@@ -248,7 +229,7 @@
     <div><span>▣</span><label>UID</label><strong>FLX-10417</strong></div>
     <div><span>▦</span><label data-i18n="deviceId">Идентификатор устройства</label><strong>FLUX-DEVICE-01</strong></div>
     <div><span>▦</span><label data-i18n="hwid">Доступно сбросов HWID</label><strong>0</strong></div>
-    <div><span>▭</span><label data-i18n="subscription">Подписка</label><strong data-i18n="subscriptionValue">90 дней · активна</strong></div>
+    <div><span>▭</span><label data-i18n="subscription">Подписка</label><strong id="subscriptionValue">0 дней · не активна</strong></div>
     <div><span>♙</span><label data-i18n="role">Роль</label><strong data-i18n="profileRole">Пользователь</strong></div>
    </div>
    <div class="profile-actions"><button class="btn primary" data-action="show-tab" data-tab-target="pricing" data-i18n="buySubscription">♧ &nbsp; Купить подписку</button><button class="btn" data-action="show-tab" data-tab-target="download" data-i18n="downloadLauncher">▣ &nbsp; Скачать лаунчер</button></div>
@@ -282,7 +263,7 @@
       <input type="password" placeholder="Новый пароль">
       <input type="password" placeholder="Повторите пароль">
      </div>
-     <button class="btn primary security-action" data-action="toast" data-message="Изменение пароля доступно после подключения сервера.">▣ &nbsp; Сменить пароль</button>
+     <button class="btn primary security-action" data-action="toast" data-message="Изменение пароля доступно после подключения сервера."><span class="security-btn-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span>Сменить пароль</button>
     </div>
 
     <div class="security-section">
@@ -291,13 +272,13 @@
       <input type="email" placeholder="Новая почта">
       <input type="password" placeholder="Текущий пароль">
      </div>
-     <button class="btn primary security-action" data-action="toast" data-message="Смена почты доступна после подключения сервера.">✉ &nbsp; Сменить почту</button>
+     <button class="btn primary security-action" data-action="toast" data-message="Смена почты доступна после подключения сервера."><span class="security-btn-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>Сменить почту</button>
     </div>
 
     <div class="security-section security-section-last">
      <h3><span class="security-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v5c0 4.8 2.8 8 7 10 4.2-2 7-5.2 7-10V6l-7-3Z"/><circle cx="12" cy="11" r="2.3"/><path d="M8.8 17c.8-1.7 1.9-2.5 3.2-2.5s2.4.8 3.2 2.5"/></svg></span> Telegram и двухфакторная защита</h3>
      <p>Привяжите Telegram, чтобы включить подтверждение входа кодом. Один раз с IP — дальше вход с него без кода.</p>
-     <button class="btn primary security-action" data-action="toast" data-message="Telegram будет доступен после подключения сервера.">◈ &nbsp; Привязать Telegram</button>
+     <button class="btn primary security-action" data-action="toast" data-message="Telegram будет доступен после подключения сервера."><span class="security-btn-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.8 2.8 8 7 10 4.2-2 7-5.2 7-10V6l-7-3Z"/><path d="m9.5 12 1.6 1.6 3.5-3.7"/></svg></span>Привязать Telegram</button>
     </div>
    </div>
   </div>
@@ -305,47 +286,199 @@
 </section>
 
 <section class="page" id="referral">
- <div class="container profile-wrap"><div class="profile-sidebar"><div class="profile-user"><div class="profile-avatar">—</div><div><strong class="account-name">—</strong><span>Пользователь</span></div></div><div class="side-menu profile-nav"></div><button class="logout" data-action="logout">↪ &nbsp; Выйти</button></div>
-  <div class="profile-main"><div class="profile-card"><div class="profile-head"><h2>Реферальная программа</h2><p>Приглашай друзей и получай дни подписки</p></div>
-   <div class="ref-link"><span>Твоя реферальная ссылка</span><strong id="referralLink">https://flux.local/?ref=v0dak</strong><button class="btn primary" data-action="copy-referral">Копировать</button></div>
-   <div class="stats"><div><small>Регистраций</small><b>0</b></div><div><small>Купили подписку</small><b>0</b></div><div><small>Начислено</small><b>+0 дн.</b></div></div>
-   <p class="muted">За каждого приглашённого пользователя, который зарегистрируется и купит подписку, начисляется бонус.</p>
-  </div></div>
+ <div class="container profile-wrap referral-layout">
+  <div class="profile-sidebar">
+   <div class="profile-user">
+    <div class="profile-avatar">—</div>
+    <div><strong class="account-name">—</strong><span>Пользователь</span></div>
+   </div>
+   <div class="side-menu profile-nav"></div>
+   <button class="logout" data-action="logout">↪ &nbsp; Выйти</button>
+  </div>
+
+  <div class="profile-main">
+   <div class="profile-card referral-card">
+    <div class="profile-head">
+     <h2>Реферальная программа</h2>
+     <p>Приглашай друзей и получай дни подписки</p>
+    </div>
+
+    <div class="referral-link-card">
+     <div class="referral-link-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M16 11a4 4 0 0 1 4 4v2"/><path d="M17 3.5a4 4 0 0 1 0 7"/></svg>
+     </div>
+     <div class="referral-link-copy">
+      <span>Твоя реферальная ссылка</span>
+      <strong id="referralLink">https://v0dak.github.io/fluxdlcc/?ref=PLAYER</strong>
+     </div>
+     <button class="btn primary referral-copy-btn" data-action="copy-referral">
+      <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg></span>
+      Копировать
+     </button>
+    </div>
+
+    <div class="referral-stats">
+     <div class="referral-stat"><small>Регистраций</small><b id="referralRegistrations">0</b></div>
+     <div class="referral-stat"><small>Купили подписку</small><b id="referralPurchases">0</b></div>
+     <div class="referral-stat referral-stat-accent"><small>Начислено</small><b id="referralReward">+0 дн.</b></div>
+    </div>
+
+    <p class="referral-help">За каждого, кто зарегистрируется по твоей ссылке и купит подписку, ты получаешь <b>+2 дня</b> подписки, а он — <b>+5 дней</b>.</p>
+
+    <div class="referral-invited-head">
+     <span>Приглашённые</span><b id="referralInvitedCount">0</b>
+    </div>
+    <div class="referral-empty" id="referralInvitedList">Пока никто не зарегистрировался по твоей ссылке</div>
+   </div>
+  </div>
  </div>
 </section>
 
 <section class="page" id="freeze">
  <div class="container profile-wrap"><div class="profile-sidebar"><div class="profile-user"><div class="profile-avatar">—</div><div><strong class="account-name">—</strong><span>Пользователь</span></div></div><div class="side-menu profile-nav"></div><button class="logout" data-action="logout">↪ &nbsp; Выйти</button></div>
-  <div class="profile-main"><div class="profile-card"><div class="profile-head"><h2>Заморозка</h2><p>Управление подпиской</p></div>
-   <div class="freeze-banner"><h2>Подписка активна</h2><p>Заморозка доступна после подходящей покупки или ручного начисления.</p></div>
-   <div class="stats"><div><small>Доступно заморозок</small><b>0</b></div><div><small>Осталось подписки</small><b>90 дн.</b></div><div><small>Дата окончания</small><b>—</b></div></div>
-   <div class="security-box"><h3>Как это работает</h3><p>При заморозке доступ к клиенту временно закрывается, а оплаченные дни сохраняются.</p></div>
+  <div class="profile-main"><div class="profile-card freeze-dashboard-card">
+   <div class="profile-head"><h2>Заморозка</h2><p>Управление подпиской и заморозками</p></div>
+
+   <div class="freeze-hero-card">
+    <div class="freeze-hero-copy">
+     <h3 id="subscriptionStatusTitle">Подписки нет</h3>
+     <p id="subscriptionStatusText">Сначала купи или активируй подписку, чтобы использовать заморозку.</p>
+    </div>
+    <button class="freeze-refresh-btn" type="button" data-action="toast" data-message="Данные обновлены.">
+      <span class="freeze-btn-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 0 1-13.66 5.66"/><path d="M4 12A8 8 0 0 1 17.66 6.34"/><path d="M17 4v4h4"/><path d="M7 20v-4H3"/></svg>
+      </span>
+      Обновить
+    </button>
+   </div>
+
+   <div class="freeze-stats-grid">
+    <div class="freeze-stat-card">
+     <small>Доступно заморозок</small>
+     <b id="freezeTicketsCount">0</b>
+     <span>Нет неиспользованных билетов</span>
+    </div>
+    <div class="freeze-stat-card">
+     <small>Осталось подписки</small>
+     <b id="subscriptionDaysFreeze">0 дн.</b>
+     <span>Срок начнётся после покупки</span>
+    </div>
+    <div class="freeze-stat-card">
+     <small>Дата окончания</small>
+     <b id="subscriptionEndsAt">—</b>
+     <span>Дата появится после активации</span>
+    </div>
+   </div>
+
+   <div class="freeze-panel">
+    <h3><span class="freeze-panel-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="10" rx="2"/><path d="M8 7V5.8A1.8 1.8 0 0 1 9.8 4h4.4A1.8 1.8 0 0 1 16 5.8V7"/><path d="M9.5 11h5"/></svg></span> Правила начисления</h3>
+    <p>Каждая подходящая покупка создаёт отдельный билет на заморозку. Использованный билет не возвращается даже при досрочной разморозке.</p>
+    <div class="freeze-rules-grid">
+      <article class="freeze-rule-card">
+        <div class="freeze-rule-top"><strong>30 дней</strong><span>Подписка</span></div>
+        <b>1 заморозка</b>
+        <small>до 14 дней каждая</small>
+      </article>
+      <article class="freeze-rule-card">
+        <div class="freeze-rule-top"><strong>90 дней</strong><span>Подписка</span></div>
+        <b>1 заморозка</b>
+        <small>до 20 дней каждая</small>
+      </article>
+      <article class="freeze-rule-card featured">
+        <div class="freeze-rule-top"><strong>180 дней</strong><span>Подписка</span></div>
+        <b>2 заморозки</b>
+        <small>до 40 дней каждая</small>
+      </article>
+    </div>
+   </div>
+
+   <div class="freeze-panel">
+    <h3><span class="freeze-panel-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5.5 6v5.1c0 4.3 2.6 7.3 6.5 9 3.9-1.7 6.5-4.7 6.5-9V6L12 3Z"/><path d="m9.8 11.7 1.5 1.5 3.2-3.4"/></svg></span> Как это работает</h3>
+    <p>Заморозка меняет доступ к клиенту, но не сжигает уже оплаченные дни.</p>
+    <div class="freeze-steps-grid">
+      <article class="freeze-step-card">
+        <div class="freeze-step-num">01</div>
+        <h4>Сохраняем остаток</h4>
+        <p>Фиксируем активный тариф, роль и точное количество оставшихся дней.</p>
+      </article>
+      <article class="freeze-step-card">
+        <div class="freeze-step-num">02</div>
+        <h4>Закрываем доступ</h4>
+        <p>На срок заморозки выдаём подписку freeze и роль заморозка без доступа к клиенту.</p>
+      </article>
+      <article class="freeze-step-card">
+        <div class="freeze-step-num">03</div>
+        <h4>Возвращаем подписку</h4>
+        <p>При разморозке восстанавливаем прежний тариф, роль и весь сохранённый остаток.</p>
+      </article>
+    </div>
+    <div class="freeze-note"><span aria-hidden="true">ⓘ</span> Пока подписка заморожена, её оплаченный остаток не расходуется. Досрочная разморозка не возвращает использованный билет.</div>
+   </div>
   </div></div>
  </div>
 </section>
 
 <section class="page" id="roulette">
  <div class="container profile-wrap"><div class="profile-sidebar"><div class="profile-user"><div class="profile-avatar">—</div><div><strong class="account-name">—</strong><span>Пользователь</span></div></div><div class="side-menu profile-nav"></div><button class="logout" data-action="logout">↪ &nbsp; Выйти</button></div>
-  <div class="profile-main"><div class="profile-card"><div class="profile-head"><h2>Рулетка</h2><p>Ежедневные награды FLUX</p></div>
-   <div class="freeze-banner"><h2>Аккаунт готов</h2><p>Ежедневная рулетка открывается для подходящих аккаунтов.</p></div>
-   <div class="stats"><div><small>Прокрутки сегодня</small><b>0 из 2</b></div><div><small>Баланс FLX</small><b>0</b></div><div><small>Следующий сброс</small><b>—</b></div></div>
-   <div class="roulette-box">
-      <div class="roulette-head">
-        <div><span class="kicker">FLUX DAILY</span><h3>Ежедневная рулетка</h3><p>Две бесплатные попытки каждый день.</p></div>
-        <div class="roulette-counter"><span>Попытки</span><b id="spinCount">0 / 2</b></div>
-      </div>
-      <div class="roulette-stage">
-        <div class="roulette-pointer"></div>
-        <div class="roulette-wheel" id="rouletteWheel">
-          <div class="wheel-center"><span>FLUX</span><small>SPIN</small></div>
-          <div class="wheel-label l1">10 FLX</div><div class="wheel-label l2">+1 ДЕНЬ</div>
-          <div class="wheel-label l3">СБРОС HWID</div><div class="wheel-label l4">УДАЧА</div>
-          <div class="wheel-label l5">ЗАМОРОЗКА</div><div class="wheel-label l6">25 FLX</div>
-        </div>
-      </div>
-      <div class="roulette-result" id="rouletteResult">Нажми «Прокрутить», чтобы испытать удачу.</div>
-      <button class="btn primary roulette-spin" id="spinButton" data-action="spin-roulette">Прокрутить</button>
+  <div class="profile-main"><div class="profile-card roulette-dashboard-card"><div class="profile-head"><h2>Рулетка</h2><p>Ежедневные награды FLUX</p></div>
+
+   <div class="roulette-hero-card">
+    <div>
+      <div class="roulette-hero-kicker"><span class="roulette-hero-gift" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8" width="17" height="12" rx="2"></rect><path d="M12 8v12"></path><path d="M4 12h16"></path><path d="M7.6 8c-1.1 0-1.9-.8-1.9-1.9 0-.9.6-1.7 1.5-1.9 1.7-.4 3 1.1 4.8 3.8"></path><path d="M16.4 8c1.1 0 1.9-.8 1.9-1.9 0-.9-.6-1.7-1.5-1.9-1.7-.4-3 1.1-4.8 3.8"></path></svg></span> FLUX DAILY</div>
+      <h3 id="rouletteHeroTitle">Аккаунт готов к рулетке</h3>
+      <p id="rouletteHeroText">Используй ежедневные попытки и забирай награды — от FLX до подписки и заморозок.</p>
     </div>
+   </div>
+
+   <div class="roulette-stats-grid">
+    <div class="roulette-stat-card">
+      <small>Прокрутки сегодня</small>
+      <b><span id="spinCountValue">0</span> из 2</b>
+      <span>Осталось: <strong id="spinRemaining">2</strong></span>
+    </div>
+    <div class="roulette-stat-card">
+      <small>Баланс FLX</small>
+      <b id="rouletteBalance">0</b>
+      <span>Монеты рулетки</span>
+    </div>
+    <div class="roulette-stat-card">
+      <small>Следующий сброс</small>
+      <b id="rouletteResetHuman">—</b>
+      <span id="rouletteResetCaption">Ежедневно в 01:00 МСК</span>
+    </div>
+   </div>
+
+   <div class="roulette-panel">
+    <h3><span class="roulette-panel-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8" width="17" height="12" rx="2"></rect><path d="M12 8v12"></path><path d="M4 12h16"></path><path d="M7.6 8c-1.1 0-1.9-.8-1.9-1.9 0-.9.6-1.7 1.5-1.9 1.7-.4 3 1.1 4.8 3.8"></path><path d="M16.4 8c1.1 0 1.9-.8 1.9-1.9 0-.9-.6-1.7-1.5-1.9-1.7-.4-3 1.1-4.8 3.8"></path></svg></span> Ежедневная рулетка</h3>
+    <p>Один шанс в день для обычного аккаунта и два — при активной базовой подписке.</p>
+
+    <div class="roulette-strip-shell">
+      <div class="roulette-strip-marker"></div>
+      <div class="roulette-strip-track" id="rouletteTrack"></div>
+    </div>
+
+    <div class="roulette-control-bar">
+      <button class="roulette-spin-btn" id="spinButton" data-action="spin-roulette">Прокрутить рулетку</button>
+      <div class="roulette-control-info">
+        <strong>Осталось прокруток: <span id="spinRemainingBottom">2</span></strong>
+        <span id="rouletteStatusText">Следующий сброс — в 01:00 по Москве</span>
+      </div>
+    </div>
+
+    <div class="roulette-last-result" id="rouletteResult">Нажми «Прокрутить рулетку», чтобы испытать удачу.</div>
+   </div>
+
+   <div class="roulette-panel">
+    <h3><span class="roulette-panel-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8" width="17" height="12" rx="2"></rect><path d="M12 8v12"></path><path d="M4 12h16"></path><path d="M7.6 8c-1.1 0-1.9-.8-1.9-1.9 0-.9.6-1.7 1.5-1.9 1.7-.4 3 1.1 4.8 3.8"></path><path d="M16.4 8c1.1 0 1.9-.8 1.9-1.9 0-.9-.6-1.7-1.5-1.9-1.7-.4-3 1.1-4.8 3.8"></path></svg></span> Все возможные награды</h3>
+    <div class="roulette-rewards-grid" id="rouletteRewardsGrid"></div>
+    <div class="roulette-note"><span aria-hidden="true">ⓘ</span> Подписки, бета, сброс HWID и заморозка пока только фиксируются в истории. Функционал их выдачи можно подключить отдельно.</div>
+   </div>
+
+   <div class="roulette-panel roulette-history-panel">
+    <h3><span class="roulette-panel-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12a7 7 0 1 0 2-4.9"></path><path d="M5 4v5h5"></path></svg></span> Последние награды</h3>
+    <div class="roulette-history-list" id="rouletteHistoryList">Пока пусто — первая награда появится здесь.</div>
+   </div>
+  </div></div>
  </div>
 </section>
 

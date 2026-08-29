@@ -8,6 +8,7 @@ function showTab(id){
  const next=document.getElementById(id);
  const current=document.querySelector(".page.active");
  document.body.classList.toggle("security-dashboard-open", id==="security");
+ document.body.classList.toggle("referral-dashboard-open", id==="referral");
  if(!next || current===next) return;
 
  document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.tab===id));
@@ -24,6 +25,11 @@ function showTab(id){
    next.classList.add("active");
    window.scrollTo({top:0,behavior:"smooth"});
  }
+}
+
+function navigateProfile(target){
+  if(!target) return;
+  showTab(target);
 }
 
 function toast(s){const x=document.getElementById("toast");x.textContent=s;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),2400)}
@@ -74,12 +80,11 @@ function closePurchase(){document.getElementById("purchaseOverlay").classList.re
 function buy(price){buyProduct("Подписка FLUX",price);}
 
 function openConfig(name){
- const ok=name==="V0dak"||name==="Happy";
- if(!ok){toast("Этот конфиг пока недоступен.");return;}
- const text=lang==="en" ? ("Config "+name+" selected.") :
-            lang==="uk" ? ("Конфіг "+name+" обрано.") :
-            ("Конфиг "+name+" выбран.");
- toast(text);
+ if(name!=="V0dak"){
+   toast("Этот конфиг пока недоступен.");
+   return;
+ }
+ buyProduct("Конфиг V0dak",50);
 }
 
 function activateKey(){const v=document.getElementById('activationKey').value.trim();toast(v?(lang==='en'?'Key activated.':lang==='uk'?'Ключ активовано.':'Ключ активирован.'):(lang==='en'?'Enter a key.':lang==='uk'?'Введи ключ.':'Введи ключ.'));}

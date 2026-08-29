@@ -242,3 +242,658 @@ html[data-theme="black"] .flux-auth-brand-mark,
 html[data-theme="black"] .top-flux-logo{
   filter:grayscale(1) brightness(1.75)!important;
 }
+
+/* ===== Account + security dashboard: selected theme must win over legacy blue !important rules ===== */
+/* Account shell and profile card accents */
+html[data-theme] #account .profile-sidebar,
+html[data-theme] #account .profile-card,
+html[data-theme] #account .activate{
+  border-color:rgba(var(--theme-rgb),.18)!important;
+}
+html[data-theme] #account .profile-user{
+  border-color:rgba(var(--theme-rgb),.28)!important;
+  background:linear-gradient(135deg,rgba(var(--theme-rgb),.16),rgba(var(--theme-rgb),.035))!important;
+}
+html[data-theme] #account .profile-avatar{
+  background:linear-gradient(145deg,rgba(var(--theme-rgb),.62),var(--theme-accent))!important;
+  border-color:var(--theme-accent2)!important;
+  box-shadow:0 0 0 2px rgba(var(--theme-rgb),.10)!important;
+}
+html[data-theme] #account .side-item.active{
+  background:rgba(var(--theme-rgb),.22)!important;
+  border-color:rgba(var(--theme-rgb),.34)!important;
+}
+html[data-theme] #account .side-item:hover{
+  background:rgba(var(--theme-rgb),.11)!important;
+}
+html[data-theme] #account .side-item>span,
+html[data-theme] #account .profile-rows span{
+  color:var(--theme-accent)!important;
+}
+html[data-theme] #account .side-item.active>span,
+html[data-theme] #account .side-item:hover>span{
+  color:var(--theme-accent2)!important;
+}
+html[data-theme] #account .logout{
+  border-color:rgba(var(--theme-rgb),.42)!important;
+  color:var(--theme-accent2)!important;
+  background:rgba(var(--theme-rgb),.045)!important;
+}
+html[data-theme] #account .logout:hover{
+  background:rgba(var(--theme-rgb),.12)!important;
+  border-color:var(--theme-accent)!important;
+}
+html[data-theme] #account .profile-actions .btn.primary,
+html[data-theme] #account .activate button{
+  background:var(--theme-accent)!important;
+  border-color:var(--theme-accent)!important;
+  box-shadow:0 8px 22px rgba(var(--theme-rgb),.16)!important;
+}
+html[data-theme] #account .profile-actions .btn.primary:hover,
+html[data-theme] #account .activate button:hover{
+  background:var(--theme-accent2)!important;
+  border-color:var(--theme-accent2)!important;
+}
+html[data-theme] #account .activate input:focus{
+  border-color:var(--theme-accent)!important;
+  box-shadow:0 0 0 3px rgba(var(--theme-rgb),.10)!important;
+}
+
+/* Security sidebar and controls */
+html[data-theme] #security .profile-avatar{
+  background:radial-gradient(circle at 32% 26%,var(--theme-accent2) 0,var(--theme-accent) 48%,rgba(var(--theme-rgb),.48) 100%)!important;
+  border-color:var(--theme-accent)!important;
+  box-shadow:0 0 0 2px rgba(var(--theme-rgb),.10)!important;
+}
+html[data-theme] #security .side-item:hover{
+  background:rgba(var(--theme-rgb),.10)!important;
+}
+html[data-theme] #security .side-item.active{
+  background:rgba(var(--theme-rgb),.22)!important;
+  border-color:rgba(var(--theme-rgb),.24)!important;
+}
+html[data-theme] #security .side-item.active .nav-icon,
+html[data-theme] #security .side-item:hover .nav-icon,
+html[data-theme] #security .security-icon{
+  color:var(--theme-accent)!important;
+}
+html[data-theme] #security .logout{
+  color:var(--theme-accent2)!important;
+  border-color:rgba(var(--theme-rgb),.40)!important;
+}
+html[data-theme] #security .logout:hover{
+  background:rgba(var(--theme-rgb),.10)!important;
+  border-color:var(--theme-accent)!important;
+  color:var(--theme-accent2)!important;
+}
+html[data-theme] #security .security-grid input:focus{
+  border-color:var(--theme-accent)!important;
+  box-shadow:0 0 0 3px rgba(var(--theme-rgb),.10)!important;
+}
+html[data-theme] #security .security-action{
+  background:var(--theme-accent)!important;
+  border-color:var(--theme-accent)!important;
+  box-shadow:0 8px 22px rgba(var(--theme-rgb),.14)!important;
+}
+html[data-theme] #security .security-action:hover{
+  background:var(--theme-accent2)!important;
+  border-color:var(--theme-accent2)!important;
+}
+
+/* Black theme keeps the same dark dashboard but uses neutral silver accents. */
+html[data-theme="black"] #account .profile-user,
+html[data-theme="black"] #account .side-item.active,
+html[data-theme="black"] #security .side-item.active{
+  background:rgba(255,255,255,.08)!important;
+}
+html[data-theme="black"] #account .profile-avatar,
+html[data-theme="black"] #security .profile-avatar{
+  background:linear-gradient(145deg,#30333a,#16181c)!important;
+  border-color:#d7d9df!important;
+}
+
+/* ===== Referral dashboard theme bridge ===== */
+html[data-theme] #referral .profile-avatar{
+  background:radial-gradient(circle at 32% 26%,var(--theme-accent2) 0,var(--theme-accent) 48%,rgba(var(--theme-rgb),.48) 100%)!important;
+  border:2px solid var(--theme-accent)!important;
+  box-shadow:0 0 0 2px rgba(var(--theme-rgb),.10)!important;
+}
+html[data-theme] #referral .profile-user{
+  border-color:rgba(var(--theme-rgb),.18)!important;
+}
+html[data-theme] #referral .side-item:hover{
+  background:rgba(var(--theme-rgb),.10)!important;
+}
+html[data-theme] #referral .side-item.active{
+  color:#fff!important;
+  background:rgba(var(--theme-rgb),.22)!important;
+  border-color:rgba(var(--theme-rgb),.30)!important;
+}
+html[data-theme] #referral .side-item.active .nav-icon,
+html[data-theme] #referral .side-item:hover .nav-icon,
+html[data-theme] #referral .referral-link-icon,
+html[data-theme] #referral .referral-stat-accent b{
+  color:var(--theme-accent)!important;
+}
+html[data-theme] #referral .referral-link-card{
+  border-color:rgba(var(--theme-rgb),.52)!important;
+  background:rgba(var(--theme-rgb),.105)!important;
+}
+html[data-theme] #referral .referral-copy-btn{
+  background:var(--theme-accent)!important;
+  border-color:var(--theme-accent)!important;
+  color:#fff!important;
+}
+html[data-theme] #referral .referral-copy-btn:hover{
+  background:var(--theme-accent2)!important;
+  border-color:var(--theme-accent2)!important;
+}
+html[data-theme] #referral .logout{
+  color:var(--theme-accent2)!important;
+  border-color:rgba(var(--theme-rgb),.40)!important;
+  background:rgba(var(--theme-rgb),.035)!important;
+}
+html[data-theme] #referral .logout:hover{
+  background:rgba(var(--theme-rgb),.10)!important;
+  border-color:var(--theme-accent)!important;
+}
+html[data-theme="black"] #referral .side-item.active,
+html[data-theme="black"] #referral .referral-link-card{
+  background:rgba(255,255,255,.08)!important;
+}
+html[data-theme="black"] #referral .profile-avatar{
+  background:linear-gradient(145deg,#30333a,#16181c)!important;
+  border-color:#d7d9df!important;
+}
+
+
+/* ===== Theme bridge for freeze dashboard ===== */
+html[data-theme] #freeze .profile-user{
+  border-color:rgba(var(--theme-rgb),.18)!important;
+  background:linear-gradient(135deg,rgba(var(--theme-rgb),.16),rgba(var(--theme-rgb),.035))!important;
+}
+html[data-theme] #freeze .profile-avatar{
+  background:radial-gradient(circle at 32% 26%,var(--theme-accent2) 0,var(--theme-accent) 48%,rgba(var(--theme-rgb),.48) 100%)!important;
+  border:2px solid var(--theme-accent)!important;
+  box-shadow:0 0 0 2px rgba(var(--theme-rgb),.10)!important;
+}
+html[data-theme] #freeze .side-item:hover{
+  background:rgba(var(--theme-rgb),.10)!important;
+}
+html[data-theme] #freeze .side-item.active{
+  color:#fff!important;
+  background:rgba(var(--theme-rgb),.22)!important;
+  border-color:rgba(var(--theme-rgb),.30)!important;
+}
+html[data-theme] #freeze .side-item.active .nav-icon,
+html[data-theme] #freeze .side-item:hover .nav-icon,
+html[data-theme] #freeze .freeze-panel-icon,
+html[data-theme] #freeze .freeze-stat-card:first-child b,
+html[data-theme] #freeze .freeze-rule-card b,
+html[data-theme] #freeze .freeze-step-num{
+  color:var(--theme-accent)!important;
+}
+html[data-theme] #freeze .freeze-step-num{
+  border-color:rgba(var(--theme-rgb),.34)!important;
+  background:rgba(var(--theme-rgb),.10)!important;
+}
+html[data-theme] #freeze .freeze-hero-card{
+  border-color:rgba(var(--theme-rgb),.22)!important;
+  background:
+    radial-gradient(circle at 86% 16%,rgba(var(--theme-rgb),.14) 0 18%,transparent 18.8%),
+    radial-gradient(circle at 90% 16%,transparent 0 27%,rgba(255,255,255,.055) 27.5% 28.1%,transparent 28.6%),
+    radial-gradient(circle at 82% 18%,transparent 0 39%,rgba(255,255,255,.042) 39.3% 39.8%,transparent 40.2%),
+    linear-gradient(90deg,rgba(255,255,255,.01) 0%,rgba(255,255,255,.01) 57%,rgba(var(--theme-rgb),.10) 100%),
+    linear-gradient(180deg,rgba(255,255,255,.018),rgba(255,255,255,.01))!important;
+}
+html[data-theme] #freeze .freeze-refresh-btn{
+  border-color:rgba(var(--theme-rgb),.24)!important;
+}
+html[data-theme] #freeze .freeze-refresh-btn:hover{
+  background:rgba(var(--theme-rgb),.10)!important;
+  border-color:rgba(var(--theme-rgb),.38)!important;
+}
+html[data-theme] #freeze .logout{
+  color:var(--theme-accent2)!important;
+  border-color:rgba(var(--theme-rgb),.40)!important;
+  background:rgba(var(--theme-rgb),.035)!important;
+}
+html[data-theme] #freeze .logout:hover{
+  background:rgba(var(--theme-rgb),.10)!important;
+  border-color:var(--theme-accent)!important;
+}
+html[data-theme] #freeze .freeze-rule-card.featured{
+  border-color:rgba(var(--theme-rgb),.46)!important;
+  box-shadow:inset 0 0 0 1px rgba(var(--theme-rgb),.10)!important;
+}
+html[data-theme="black"] #freeze .profile-avatar{
+  background:linear-gradient(145deg,#30333a,#16181c)!important;
+  border-color:#d7d9df!important;
+}
+html[data-theme="black"] #freeze .side-item.active,
+html[data-theme="black"] #freeze .freeze-hero-card{
+  background:rgba(255,255,255,.08)!important;
+}
+
+
+/* ===== Theme bridge for roulette dashboard ===== */
+html[data-theme] #roulette .profile-user{
+  border-color:rgba(var(--theme-rgb),.18)!important;
+  background:linear-gradient(135deg,rgba(var(--theme-rgb),.16),rgba(var(--theme-rgb),.035))!important;
+}
+html[data-theme] #roulette .profile-avatar{
+  background:radial-gradient(circle at 32% 26%,var(--theme-accent2) 0,var(--theme-accent) 48%,rgba(var(--theme-rgb),.48) 100%)!important;
+  border:2px solid var(--theme-accent)!important;
+  box-shadow:0 0 0 2px rgba(var(--theme-rgb),.10)!important;
+}
+html[data-theme] #roulette .side-item:hover{background:rgba(var(--theme-rgb),.10)!important}
+html[data-theme] #roulette .side-item.active{color:#fff!important;background:rgba(var(--theme-rgb),.22)!important;border-color:rgba(var(--theme-rgb),.30)!important}
+html[data-theme] #roulette .side-item.active .nav-icon,
+html[data-theme] #roulette .side-item:hover .nav-icon,
+html[data-theme] #roulette .roulette-prize,
+html[data-theme] #roulette #spinCountValue,
+html[data-theme] #roulette #rouletteBalance{
+  color:var(--theme-accent)!important;
+}
+html[data-theme] #roulette .logout{color:var(--theme-accent2)!important;border-color:rgba(var(--theme-rgb),.40)!important;background:rgba(var(--theme-rgb),.035)!important}
+html[data-theme] #roulette .logout:hover{background:rgba(var(--theme-rgb),.10)!important;border-color:var(--theme-accent)!important}
+html[data-theme] #roulette .roulette-panel-icon,
+html[data-theme] #roulette .roulette-hero-kicker,
+html[data-theme] #roulette .roulette-hero-gift{color:var(--theme-accent)!important}
+html[data-theme] #roulette .roulette-control-bar{border-color:rgba(var(--theme-rgb),.18)!important;background:linear-gradient(90deg,rgba(var(--theme-rgb),.13),rgba(255,255,255,.01) 72%)!important}
+html[data-theme] #roulette .roulette-note{border-color:rgba(var(--theme-rgb),.22)!important;background:rgba(var(--theme-rgb),.09)!important;color:#cfd7e3!important}
+html[data-theme] #roulette .roulette-history-item,
+html[data-theme] #roulette .roulette-strip-shell,
+html[data-theme] #roulette .roulette-panel,
+html[data-theme] #roulette .roulette-stat-card{border-color:rgba(var(--theme-rgb),.16)!important}
+html[data-theme] #roulette .roulette-hero-card{border-color:rgba(var(--theme-rgb),.22)!important}
+html[data-theme="black"] #roulette .profile-avatar{background:linear-gradient(145deg,#30333a,#16181c)!important;border-color:#d7d9df!important}
+
+
+html[data-theme] #configs .config-product-card .amount{color:var(--theme-accent)!important}
+html[data-theme] #configs .config-product-card .config-active{
+  background:var(--theme-accent)!important;
+  border-color:var(--theme-accent)!important;
+}
+html[data-theme] #configs .config-product-card .config-active:hover{
+  background:var(--theme-accent2)!important;
+  border-color:var(--theme-accent2)!important;
+}
+
+/* ===== Fix bright/white pressed buttons in selectable themes ===== */
+/* Keep browser native :active/:focus states from flashing white. */
+html[data-theme] button,
+html[data-theme] .btn,
+html[data-theme] .pay-btn,
+html[data-theme] .purchase-pay,
+html[data-theme] .purchase-promo button,
+html[data-theme] .activate button{
+  -webkit-appearance:none!important;
+  appearance:none!important;
+  -webkit-tap-highlight-color:transparent!important;
+}
+
+html[data-theme] .pay-btn,
+html[data-theme] .purchase-pay,
+html[data-theme] .purchase-promo button,
+html[data-theme] .activate button,
+html[data-theme] .btn.primary{
+  color:#fff!important;
+}
+
+html[data-theme] .pay-btn:focus,
+html[data-theme] .pay-btn:focus-visible,
+html[data-theme] .purchase-pay:focus,
+html[data-theme] .purchase-pay:focus-visible,
+html[data-theme] .purchase-promo button:focus,
+html[data-theme] .purchase-promo button:focus-visible,
+html[data-theme] .activate button:focus,
+html[data-theme] .activate button:focus-visible,
+html[data-theme] .btn.primary:focus,
+html[data-theme] .btn.primary:focus-visible{
+  outline:none!important;
+  box-shadow:0 0 0 3px rgba(var(--theme-rgb),.22)!important;
+}
+
+html[data-theme] .pay-btn:active,
+html[data-theme] .purchase-pay:active,
+html[data-theme] .purchase-promo button:active,
+html[data-theme] .activate button:active,
+html[data-theme] .btn.primary:active{
+  background:var(--theme-accent)!important;
+  border-color:var(--theme-accent)!important;
+  color:#fff!important;
+  filter:brightness(.84)!important;
+  transform:translateY(1px)!important;
+}
+
+/* The black theme uses silver for icons/borders, but action buttons should stay dark. */
+html[data-theme="black"] .pay-btn,
+html[data-theme="black"] .purchase-pay,
+html[data-theme="black"] .purchase-promo button,
+html[data-theme="black"] .activate button,
+html[data-theme="black"] #purchaseOverlay .pay-btn,
+html[data-theme="black"] #purchaseOverlay .purchase-pay{
+  background:#272a30!important;
+  border:1px solid #454a53!important;
+  color:#f5f6f8!important;
+  box-shadow:none!important;
+}
+
+html[data-theme="black"] .pay-btn:hover,
+html[data-theme="black"] .purchase-pay:hover,
+html[data-theme="black"] .purchase-promo button:hover,
+html[data-theme="black"] .activate button:hover,
+html[data-theme="black"] #purchaseOverlay .pay-btn:hover,
+html[data-theme="black"] #purchaseOverlay .purchase-pay:hover{
+  background:#32363d!important;
+  border-color:#5b616c!important;
+  color:#fff!important;
+}
+
+html[data-theme="black"] .pay-btn:active,
+html[data-theme="black"] .purchase-pay:active,
+html[data-theme="black"] .purchase-promo button:active,
+html[data-theme="black"] .activate button:active,
+html[data-theme="black"] #purchaseOverlay .pay-btn:active,
+html[data-theme="black"] #purchaseOverlay .purchase-pay:active{
+  background:#1f2227!important;
+  border-color:#686f7b!important;
+  color:#fff!important;
+  filter:none!important;
+}
+
+html[data-theme="black"] .pay-btn:focus,
+html[data-theme="black"] .pay-btn:focus-visible,
+html[data-theme="black"] .purchase-pay:focus,
+html[data-theme="black"] .purchase-pay:focus-visible,
+html[data-theme="black"] .purchase-promo button:focus,
+html[data-theme="black"] .purchase-promo button:focus-visible{
+  outline:none!important;
+  box-shadow:0 0 0 3px rgba(215,217,223,.12)!important;
+}
+
+
+/* ===== Final button-state normalization =====
+   Prevents native white flashes/backgrounds across all selectable themes. */
+html[data-theme] button,
+html[data-theme] [role="button"]{
+  -webkit-appearance:none!important;
+  appearance:none!important;
+  -webkit-tap-highlight-color:transparent!important;
+  text-decoration:none!important;
+}
+
+html[data-theme] button:focus,
+html[data-theme] button:focus-visible{
+  outline:none!important;
+}
+
+/* Primary/action buttons always use the selected theme instead of browser defaults. */
+html[data-theme]:not([data-theme="black"]) .btn.primary,
+html[data-theme]:not([data-theme="black"]) .security-action,
+html[data-theme]:not([data-theme="black"]) .referral-copy-btn,
+html[data-theme]:not([data-theme="black"]) .config-active,
+html[data-theme]:not([data-theme="black"]) .activate button,
+html[data-theme]:not([data-theme="black"]) .purchase-promo button,
+html[data-theme]:not([data-theme="black"]) .pay-btn,
+html[data-theme]:not([data-theme="black"]) .purchase-pay{
+  background:var(--theme-accent)!important;
+  border-color:var(--theme-accent)!important;
+  color:#fff!important;
+}
+
+html[data-theme]:not([data-theme="black"]) .btn.primary:hover,
+html[data-theme]:not([data-theme="black"]) .security-action:hover,
+html[data-theme]:not([data-theme="black"]) .referral-copy-btn:hover,
+html[data-theme]:not([data-theme="black"]) .config-active:hover,
+html[data-theme]:not([data-theme="black"]) .activate button:hover,
+html[data-theme]:not([data-theme="black"]) .purchase-promo button:hover,
+html[data-theme]:not([data-theme="black"]) .pay-btn:hover,
+html[data-theme]:not([data-theme="black"]) .purchase-pay:hover{
+  background:var(--theme-accent2)!important;
+  border-color:var(--theme-accent2)!important;
+  color:#fff!important;
+}
+
+html[data-theme]:not([data-theme="black"]) .btn.primary:active,
+html[data-theme]:not([data-theme="black"]) .security-action:active,
+html[data-theme]:not([data-theme="black"]) .referral-copy-btn:active,
+html[data-theme]:not([data-theme="black"]) .config-active:active,
+html[data-theme]:not([data-theme="black"]) .activate button:active,
+html[data-theme]:not([data-theme="black"]) .purchase-promo button:active,
+html[data-theme]:not([data-theme="black"]) .pay-btn:active,
+html[data-theme]:not([data-theme="black"]) .purchase-pay:active{
+  background:var(--theme-accent)!important;
+  border-color:var(--theme-accent)!important;
+  color:#fff!important;
+  filter:brightness(.86)!important;
+}
+
+/* In black theme the accent is silver for icons/text, but buttons stay dark. */
+html[data-theme="black"] .btn.primary,
+html[data-theme="black"] .security-action,
+html[data-theme="black"] .referral-copy-btn,
+html[data-theme="black"] .config-active,
+html[data-theme="black"] .activate button,
+html[data-theme="black"] .purchase-promo button,
+html[data-theme="black"] .pay-btn,
+html[data-theme="black"] .purchase-pay,
+html[data-theme="black"] .roulette-spin-btn,
+html[data-theme="black"] .freeze-refresh-btn,
+html[data-theme="black"] .shop-filter.active{
+  background:#24272d!important;
+  border:1px solid #444a54!important;
+  color:#f4f5f7!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+
+html[data-theme="black"] .btn.primary:hover,
+html[data-theme="black"] .security-action:hover,
+html[data-theme="black"] .referral-copy-btn:hover,
+html[data-theme="black"] .config-active:hover,
+html[data-theme="black"] .activate button:hover,
+html[data-theme="black"] .purchase-promo button:hover,
+html[data-theme="black"] .pay-btn:hover,
+html[data-theme="black"] .purchase-pay:hover,
+html[data-theme="black"] .roulette-spin-btn:hover,
+html[data-theme="black"] .freeze-refresh-btn:hover,
+html[data-theme="black"] .shop-filter.active:hover{
+  background:#30343b!important;
+  border-color:#5a616d!important;
+  color:#fff!important;
+}
+
+html[data-theme="black"] .btn.primary:active,
+html[data-theme="black"] .security-action:active,
+html[data-theme="black"] .referral-copy-btn:active,
+html[data-theme="black"] .config-active:active,
+html[data-theme="black"] .activate button:active,
+html[data-theme="black"] .purchase-promo button:active,
+html[data-theme="black"] .pay-btn:active,
+html[data-theme="black"] .purchase-pay:active,
+html[data-theme="black"] .roulette-spin-btn:active,
+html[data-theme="black"] .freeze-refresh-btn:active,
+html[data-theme="black"] .shop-filter.active:active{
+  background:#1d2025!important;
+  border-color:#656c77!important;
+  color:#fff!important;
+  filter:none!important;
+  transform:translateY(1px)!important;
+}
+
+html[data-theme="black"] .btn.primary:focus-visible,
+html[data-theme="black"] .security-action:focus-visible,
+html[data-theme="black"] .referral-copy-btn:focus-visible,
+html[data-theme="black"] .config-active:focus-visible,
+html[data-theme="black"] .activate button:focus-visible,
+html[data-theme="black"] .purchase-promo button:focus-visible,
+html[data-theme="black"] .pay-btn:focus-visible,
+html[data-theme="black"] .purchase-pay:focus-visible,
+html[data-theme="black"] .roulette-spin-btn:focus-visible,
+html[data-theme="black"] .freeze-refresh-btn:focus-visible{
+  box-shadow:0 0 0 3px rgba(215,217,223,.12)!important;
+}
+
+/* Disabled buttons never fall back to a native bright style. */
+html[data-theme] button:disabled,
+html[data-theme] .btn:disabled{
+  -webkit-appearance:none!important;
+  appearance:none!important;
+  opacity:.52!important;
+  cursor:not-allowed!important;
+  filter:saturate(.72)!important;
+}
+html[data-theme="black"] button:disabled,
+html[data-theme="black"] .btn:disabled{
+  background:#202329!important;
+  border-color:#383d46!important;
+  color:#9299a4!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+
+
+/* ===== FINAL hard override: no bright white action buttons in black theme =====
+   Earlier dashboard rules use #account/#security selectors with !important.
+   These selectors intentionally have higher specificity so the black theme
+   always stays dark, including hover / active / focus / disabled states. */
+html[data-theme="black"] body #account .profile-actions .btn.primary,
+html[data-theme="black"] body #account .activate button,
+html[data-theme="black"] body #security .security-action,
+html[data-theme="black"] body #referral .referral-copy-btn,
+html[data-theme="black"] body #configs .config-product-card .config-active,
+html[data-theme="black"] body #configs .config-active,
+html[data-theme="black"] body #purchaseOverlay .pay-btn,
+html[data-theme="black"] body #purchaseOverlay .purchase-pay,
+html[data-theme="black"] body #purchaseOverlay .purchase-promo button,
+html[data-theme="black"] body #loginOverlay .btn.primary,
+html[data-theme="black"] body .login-modal .btn.primary,
+html[data-theme="black"] body #freeze .freeze-refresh-btn,
+html[data-theme="black"] body #roulette .roulette-spin-btn,
+html[data-theme="black"] body #pricing .shop-filter.active,
+html[data-theme="black"] body .btn.primary{
+  background:#24272d!important;
+  background-color:#24272d!important;
+  border:1px solid #444a54!important;
+  color:#f4f5f7!important;
+  box-shadow:none!important;
+  filter:none!important;
+  -webkit-appearance:none!important;
+  appearance:none!important;
+}
+
+html[data-theme="black"] body #account .profile-actions .btn.primary:hover,
+html[data-theme="black"] body #account .activate button:hover,
+html[data-theme="black"] body #security .security-action:hover,
+html[data-theme="black"] body #referral .referral-copy-btn:hover,
+html[data-theme="black"] body #configs .config-product-card .config-active:hover,
+html[data-theme="black"] body #configs .config-active:hover,
+html[data-theme="black"] body #purchaseOverlay .pay-btn:hover,
+html[data-theme="black"] body #purchaseOverlay .purchase-pay:hover,
+html[data-theme="black"] body #purchaseOverlay .purchase-promo button:hover,
+html[data-theme="black"] body #loginOverlay .btn.primary:hover,
+html[data-theme="black"] body .login-modal .btn.primary:hover,
+html[data-theme="black"] body #freeze .freeze-refresh-btn:hover,
+html[data-theme="black"] body #roulette .roulette-spin-btn:hover,
+html[data-theme="black"] body #pricing .shop-filter.active:hover,
+html[data-theme="black"] body .btn.primary:hover{
+  background:#30343b!important;
+  background-color:#30343b!important;
+  border-color:#5a616d!important;
+  color:#fff!important;
+  box-shadow:none!important;
+  filter:none!important;
+}
+
+html[data-theme="black"] body #account .profile-actions .btn.primary:active,
+html[data-theme="black"] body #account .activate button:active,
+html[data-theme="black"] body #security .security-action:active,
+html[data-theme="black"] body #referral .referral-copy-btn:active,
+html[data-theme="black"] body #configs .config-product-card .config-active:active,
+html[data-theme="black"] body #configs .config-active:active,
+html[data-theme="black"] body #purchaseOverlay .pay-btn:active,
+html[data-theme="black"] body #purchaseOverlay .purchase-pay:active,
+html[data-theme="black"] body #purchaseOverlay .purchase-promo button:active,
+html[data-theme="black"] body #loginOverlay .btn.primary:active,
+html[data-theme="black"] body .login-modal .btn.primary:active,
+html[data-theme="black"] body #freeze .freeze-refresh-btn:active,
+html[data-theme="black"] body #roulette .roulette-spin-btn:active,
+html[data-theme="black"] body #pricing .shop-filter.active:active,
+html[data-theme="black"] body .btn.primary:active{
+  background:#1d2025!important;
+  background-color:#1d2025!important;
+  border-color:#656c77!important;
+  color:#fff!important;
+  box-shadow:none!important;
+  filter:none!important;
+  transform:translateY(1px)!important;
+}
+
+html[data-theme="black"] body #account .profile-actions .btn.primary:focus,
+html[data-theme="black"] body #account .profile-actions .btn.primary:focus-visible,
+html[data-theme="black"] body #account .activate button:focus,
+html[data-theme="black"] body #account .activate button:focus-visible,
+html[data-theme="black"] body #security .security-action:focus,
+html[data-theme="black"] body #security .security-action:focus-visible,
+html[data-theme="black"] body #referral .referral-copy-btn:focus,
+html[data-theme="black"] body #referral .referral-copy-btn:focus-visible,
+html[data-theme="black"] body #configs .config-active:focus,
+html[data-theme="black"] body #configs .config-active:focus-visible,
+html[data-theme="black"] body #purchaseOverlay button:focus,
+html[data-theme="black"] body #purchaseOverlay button:focus-visible,
+html[data-theme="black"] body #loginOverlay .btn.primary:focus,
+html[data-theme="black"] body #loginOverlay .btn.primary:focus-visible,
+html[data-theme="black"] body #freeze .freeze-refresh-btn:focus,
+html[data-theme="black"] body #freeze .freeze-refresh-btn:focus-visible,
+html[data-theme="black"] body #roulette .roulette-spin-btn:focus,
+html[data-theme="black"] body #roulette .roulette-spin-btn:focus-visible{
+  outline:none!important;
+  box-shadow:0 0 0 3px rgba(215,217,223,.12)!important;
+}
+
+html[data-theme="black"] body #account .profile-actions .btn.primary:disabled,
+html[data-theme="black"] body #account .activate button:disabled,
+html[data-theme="black"] body #security .security-action:disabled,
+html[data-theme="black"] body #referral .referral-copy-btn:disabled,
+html[data-theme="black"] body #configs .config-active:disabled,
+html[data-theme="black"] body #purchaseOverlay button:disabled,
+html[data-theme="black"] body #loginOverlay .btn.primary:disabled,
+html[data-theme="black"] body #freeze .freeze-refresh-btn:disabled,
+html[data-theme="black"] body #roulette .roulette-spin-btn:disabled,
+html[data-theme="black"] body .btn.primary:disabled{
+  background:#202329!important;
+  background-color:#202329!important;
+  border-color:#383d46!important;
+  color:#9299a4!important;
+  box-shadow:none!important;
+  filter:none!important;
+  opacity:.62!important;
+}
+
+/* Keep secondary buttons dark too, so browser/native states cannot flash white. */
+html[data-theme="black"] body #account .profile-actions .btn:not(.primary),
+html[data-theme="black"] body .buy-btn,
+html[data-theme="black"] body .server-btn,
+html[data-theme="black"] body .payment-method,
+html[data-theme="black"] body .purchase-close,
+html[data-theme="black"] body .auth-close,
+html[data-theme="black"] body .auth-back,
+html[data-theme="black"] body .auth-show-password,
+html[data-theme="black"] body .auth-switch,
+html[data-theme="black"] body .forgot-link{
+  -webkit-appearance:none!important;
+  appearance:none!important;
+  -webkit-tap-highlight-color:transparent!important;
+}
+
+html[data-theme="black"] body #account .profile-actions .btn:not(.primary):active,
+html[data-theme="black"] body .buy-btn:active,
+html[data-theme="black"] body .server-btn:active,
+html[data-theme="black"] body .payment-method:active,
+html[data-theme="black"] body .purchase-close:active{
+  background-color:#1d2025!important;
+  color:#fff!important;
+  filter:none!important;
+}
