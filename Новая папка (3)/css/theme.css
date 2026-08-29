@@ -1,0 +1,117 @@
+/* FLUX selectable themes. Blue is the default. */
+:root{
+  --theme-accent:#1d5cff;
+  --theme-accent2:#3d7bff;
+  --theme-rgb:29,92,255;
+  --theme-soft:rgba(29,92,255,.14);
+  --theme-soft-strong:rgba(29,92,255,.22);
+  --theme-image-filter:none;
+}
+html[data-theme="red"]{
+  --theme-accent:#ff3b4f;
+  --theme-accent2:#ff6678;
+  --theme-rgb:255,59,79;
+  --theme-soft:rgba(255,59,79,.14);
+  --theme-soft-strong:rgba(255,59,79,.22);
+  --theme-image-filter:hue-rotate(138deg) saturate(1.08);
+}
+html[data-theme="green"]{
+  --theme-accent:#28d17c;
+  --theme-accent2:#53e69b;
+  --theme-rgb:40,209,124;
+  --theme-soft:rgba(40,209,124,.14);
+  --theme-soft-strong:rgba(40,209,124,.22);
+  --theme-image-filter:hue-rotate(274deg) saturate(.92);
+}
+html[data-theme="black"]{
+  --theme-accent:#d7d9df;
+  --theme-accent2:#ffffff;
+  --theme-rgb:215,217,223;
+  --theme-soft:rgba(255,255,255,.08);
+  --theme-soft-strong:rgba(255,255,255,.13);
+  --theme-image-filter:grayscale(1) brightness(.72) contrast(1.15);
+}
+
+/* Bridge the existing design tokens to the selected theme. */
+html{--accent:var(--theme-accent)!important;--accent2:var(--theme-accent2)!important}
+
+/* Main accent surfaces */
+h1 span,.kicker,.card .num,.lang.active,.roulette-prize{color:var(--theme-accent)!important}
+.btn.primary,.continue-btn,.login-submit,.security-primary,.security-btn-primary,
+.shop-filter.active,.server-btn.active,.payment-method.active{
+  background:var(--theme-accent)!important;
+  border-color:var(--theme-accent)!important;
+}
+.price.featured,.velka-card.featured,.server-btn.active,.payment-method.active,
+.side-item.active,input:focus,.form input:focus,.activate input:focus,.security-grid input:focus,.purchase-promo input:focus{
+  border-color:rgba(var(--theme-rgb),.55)!important;
+}
+.side-item:hover{background:var(--theme-soft)!important}
+.side-item.active{background:var(--theme-soft-strong)!important}
+input:focus,.form input:focus,.activate input:focus,.security-grid input:focus,.purchase-promo input:focus{
+  box-shadow:0 0 0 3px rgba(var(--theme-rgb),.10)!important;
+}
+.btn:not(.primary):hover,.buy-btn:hover,.shop-filter:not(.active):hover{
+  background:var(--theme-soft)!important;
+  border-color:rgba(var(--theme-rgb),.36)!important;
+}
+.profile-pill,.profile-pill.guest-login{
+  background:linear-gradient(135deg,var(--theme-accent),var(--theme-accent2))!important;
+  box-shadow:0 8px 22px rgba(var(--theme-rgb),.22)!important;
+}
+.profile-mini-avatar{background:rgba(var(--theme-rgb),.42)!important}
+
+/* Tint the decorative FLUX graphics too. */
+.top-flux-logo,.hero-art.hero-art-image img,.pricing-orb img,.flux-mark-image{
+  filter:var(--theme-image-filter)!important;
+  transition:filter .25s ease;
+}
+
+/* Theme picker */
+.theme-switcher{position:relative;flex:0 0 auto}
+.theme-current{
+  width:36px;height:36px;padding:0;display:grid;place-items:center;
+  border:0;border-radius:9px;background:transparent;color:#fff;cursor:pointer;
+}
+.theme-current:hover{background:rgba(255,255,255,.055)}
+.theme-current:focus-visible{outline:2px solid rgba(var(--theme-rgb),.5);outline-offset:2px}
+.theme-current{grid-template-columns:1fr 9px;column-gap:1px;padding-left:8px;padding-right:5px}
+.theme-dot{width:13px;height:13px;border-radius:50%;background:var(--theme-accent);box-shadow:0 0 0 2px rgba(255,255,255,.10)}
+.theme-chevron{width:9px;height:9px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.72;transition:transform .18s ease}
+.theme-switcher.open .theme-chevron{transform:rotate(180deg)}
+.theme-menu{
+  position:absolute;top:43px;right:0;z-index:1300;width:154px;padding:5px;
+  border:1px solid rgba(255,255,255,.10);border-radius:8px;background:#151619;
+  box-shadow:0 14px 38px rgba(0,0,0,.42);opacity:0;visibility:hidden;pointer-events:none;
+  transform:translateY(-4px);transition:.15s ease;
+}
+.theme-switcher.open .theme-menu{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+.theme-option{
+  width:100%;height:36px;padding:0 9px;display:flex;align-items:center;gap:9px;
+  border:0;border-radius:6px;background:transparent;color:#aaaeb6;font:inherit;font-size:12px;font-weight:700;text-align:left;cursor:pointer;
+}
+.theme-option:hover{background:rgba(255,255,255,.055);color:#fff}
+.theme-option.active{background:var(--theme-soft);color:#fff}
+.theme-swatch{width:13px;height:13px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 0 1px rgba(255,255,255,.14)}
+.theme-swatch.blue{background:#1d5cff}.theme-swatch.red{background:#ff3b4f}.theme-swatch.green{background:#28d17c}.theme-swatch.black{background:#151515;border:1px solid #555}
+.theme-check{margin-left:auto;color:var(--theme-accent);opacity:0;font-size:14px}
+.theme-option.active .theme-check{opacity:1}
+
+/* Black theme gets a deliberately neutral profile surface instead of a bright white pill. */
+html[data-theme="black"] .profile-pill,
+html[data-theme="black"] .profile-pill.guest-login{
+  background:linear-gradient(135deg,#202226,#33363d)!important;
+  border-color:rgba(255,255,255,.15)!important;
+  box-shadow:0 8px 22px rgba(0,0,0,.26)!important;
+}
+html[data-theme="black"] .profile-mini-avatar{background:#454950!important}
+
+@media(max-width:780px){
+  .theme-current{width:32px;height:32px;padding-left:6px;padding-right:4px}
+  .theme-dot{width:12px;height:12px}
+  .theme-menu{right:-2px;top:39px}
+}
+@media(max-width:390px){
+  .theme-current{width:29px;height:30px;padding-left:5px;padding-right:3px}
+  .theme-dot{width:11px;height:11px}
+}
