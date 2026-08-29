@@ -1,4 +1,39 @@
 /* Final responsive layer. Keep this stylesheet last in the document. */
+@media (min-width: 781px){
+  .nav.velka-nav{
+    width:max-content!important;
+    max-width:calc(100% - 42px)!important;
+    height:52px!important;
+    padding:0 12px 0 18px!important;
+    display:grid!important;
+    grid-template-columns:max-content max-content max-content!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:26px!important;
+    border-radius:999px!important;
+  }
+
+  .brand-logo{
+    min-width:0!important;
+    width:max-content!important;
+    padding:0!important;
+  }
+
+  .nav.velka-nav .tabs{
+    position:static!important;
+    inset:auto!important;
+    width:max-content!important;
+    margin:0!important;
+    transform:none!important;
+  }
+
+  .right-nav{
+    width:max-content!important;
+    min-width:0!important;
+    margin:0!important;
+  }
+}
+
 @media (max-width: 780px){
   html,
   body{
@@ -38,11 +73,12 @@
     margin:0!important;
     padding:8px 9px!important;
     display:grid!important;
-    grid-template-columns:minmax(0,1fr) auto!important;
+    grid-template-columns:max-content max-content!important;
     grid-template-areas:
       "brand right"
       "tabs tabs"!important;
-    column-gap:8px!important;
+    justify-content:center!important;
+    column-gap:18px!important;
     row-gap:7px!important;
     overflow:visible!important;
     border-radius:16px!important;
@@ -128,19 +164,20 @@
     padding:0!important;
     transform:none!important;
     display:grid!important;
-    grid-template-columns:repeat(3,minmax(0,1fr))!important;
-    gap:4px!important;
+    grid-template-columns:repeat(3,max-content)!important;
+    justify-content:center!important;
+    gap:8px!important;
   }
 
   .nav.velka-nav .tabs .tab,
   .nav.velka-nav .tabs .tab:nth-child(2),
   .nav.velka-nav .tabs .tab:nth-child(3){
     display:flex!important;
-    width:100%!important;
+    width:auto!important;
     min-width:0!important;
-    height:32px!important;
+    height:34px!important;
     margin:0!important;
-    padding:0 4px!important;
+    padding:0 10px!important;
     justify-content:center!important;
     gap:4px!important;
     border-radius:8px!important;
