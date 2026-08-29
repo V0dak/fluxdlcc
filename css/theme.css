@@ -115,3 +115,130 @@ html[data-theme="black"] .profile-mini-avatar{background:#454950!important}
   .theme-current{width:29px;height:30px;padding-left:5px;padding-right:3px}
   .theme-dot{width:11px;height:11px}
 }
+
+/* ===== Theme-aware icons and remaining legacy blue accents ===== */
+/* Text/icon accents that were hard-coded blue in the older stylesheet. */
+.flux-blue-text,
+.contact-symbol,
+.contact-go,
+.contact-row:hover .contact-symbol,
+.contact-row:hover .contact-go,
+#security .security-icon,
+#account .profile-rows span,
+.server-card-check,
+.purchase-overlay .server-card-check,
+.summary-row.total strong,
+#purchaseTotal,
+.funpay-mark span,
+.promo-status,
+.roulette-prize{
+  color:var(--theme-accent)!important;
+}
+
+/* SVG icons inherit the selected theme color. */
+#security .security-icon svg,
+.profile-rows svg,
+.contact-symbol svg,
+.theme-accent-icon svg{
+  stroke:currentColor!important;
+}
+#security .security-icon svg [fill]:not([fill="none"]),
+.theme-accent-icon svg [fill]:not([fill="none"]){
+  fill:currentColor!important;
+}
+
+/* Theme the round avatars/icons used in reviews and account UI. */
+.review .avatar,
+.profile-avatar{
+  background:linear-gradient(145deg,rgba(var(--theme-rgb),.34),var(--theme-accent))!important;
+  border-color:rgba(var(--theme-rgb),.60)!important;
+  box-shadow:0 0 28px rgba(var(--theme-rgb),.20)!important;
+}
+
+/* Login mark and checkbox. */
+.flux-auth-brand-mark{
+  filter:var(--theme-image-filter)!important;
+}
+#loginOverlay .auth-check.on,
+.auth-check.on{
+  background:var(--theme-accent)!important;
+  border-color:var(--theme-accent)!important;
+}
+.auth-verified-icon{
+  color:var(--theme-accent)!important;
+  border-color:rgba(var(--theme-rgb),.62)!important;
+  background:rgba(var(--theme-rgb),.15)!important;
+}
+.login-modal input:focus,
+#loginOverlay input:focus{
+  box-shadow:0 0 0 2px rgba(var(--theme-rgb),.65)!important;
+}
+#loginOverlay .btn.primary,
+.login-modal .btn.primary{
+  background:var(--theme-accent)!important;
+  color:#fff!important;
+  box-shadow:0 12px 28px rgba(var(--theme-rgb),.22)!important;
+}
+#loginOverlay .btn.primary:hover,
+.login-modal .btn.primary:hover{
+  background:var(--theme-accent2)!important;
+}
+
+/* Purchase / FunPay modal theme accents. */
+.purchase-promo button,
+.pay-btn,
+.purchase-pay,
+.activate button{
+  background:var(--theme-accent)!important;
+  border-color:var(--theme-accent)!important;
+}
+.purchase-promo button:hover,
+.purchase-pay:hover,
+.pay-btn:hover{
+  background:var(--theme-accent2)!important;
+}
+.server-btn.active,
+.payment-method.active{
+  color:#fff!important;
+  border-color:var(--theme-accent)!important;
+  background:var(--theme-soft)!important;
+  box-shadow:0 0 0 1px rgba(var(--theme-rgb),.25)!important;
+}
+.purchase-promo input:focus{
+  border-color:var(--theme-accent)!important;
+}
+
+/* Profile/sidebar legacy accents. */
+.logout{
+  border-color:rgba(var(--theme-rgb),.38)!important;
+  color:var(--theme-accent2)!important;
+}
+.logout:hover{
+  background:var(--theme-soft)!important;
+}
+.activate{
+  border-color:rgba(var(--theme-rgb),.18)!important;
+}
+
+/* Navigation icons: muted by default, selected item follows theme. */
+.tab.active .nav-ref-icon,
+.tab:hover .nav-ref-icon{
+  color:var(--theme-accent)!important;
+}
+
+/* Review stars follow the theme explicitly. */
+.review-top>span{
+  color:var(--theme-accent)!important;
+}
+
+/* Decorative intro braces also follow a single selected theme. */
+.flux-intro-brace.left path,
+.flux-intro-brace.right path{
+  stroke:var(--theme-accent)!important;
+}
+
+/* Black theme: use a neutral bright accent for readable icons. */
+html[data-theme="black"] .flux-auth-brand-mark,
+html[data-theme="black"] .top-flux-logo{
+  filter:grayscale(1) brightness(1.75)!important;
+}

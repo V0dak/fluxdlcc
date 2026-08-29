@@ -3232,3 +3232,7 @@ input:focus,
   .hero h1,h1{font-size:36px!important;max-width:330px!important}
   .hero-art.hero-art-image{width:185vw!important;min-width:590px!important;top:165px!important}
 }
+
+/* Language selector removed */
+.langs,.lang-current,.lang-menu,.lang-option{display:none!important;}
+.right-nav{gap:8px!important;}
