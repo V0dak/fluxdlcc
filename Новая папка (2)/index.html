@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FLUX — Minecraft Client</title>
+
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/auth.css">
+<link rel="stylesheet" href="css/account.css">
+</head>
+<body>
+
+<div id="fluxIntro" aria-hidden="true">
+  <div class="flux-intro-inner">
+    <svg class="flux-intro-brace left" viewBox="0 0 60 110" aria-hidden="true">
+      <path d="M49 8 C49 30 39 42 19 55 C39 68 49 80 49 102"></path>
+    </svg>
+
+    <div class="flux-intro-word">FLUX</div>
+
+    <svg class="flux-intro-brace right" viewBox="0 0 60 110" aria-hidden="true">
+      <path d="M49 8 C49 30 39 42 19 55 C39 68 49 80 49 102"></path>
+    </svg>
+  </div>
+</div>
+
+<header class="top">
+ <div class="nav velka-nav">
+  <a class="logo brand-logo" href="#" data-action="show-tab" data-tab-target="home" aria-label="FLUX">
+  <img class="top-flux-logo" src="assets/images/flux-mark.png" alt="">
+  <span>FLUX</span>
+</a>
+  <nav class="tabs" aria-label="FLUX navigation">
+   <button class="tab active" data-tab="home" data-i18n="navHome">Главная</button>
+   <button class="tab" data-tab="pricing" data-i18n="navBuy"><span class="nav-ref-icon nav-buy-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><rect x="3.5" y="6.5" width="17" height="11" rx="1.8"/><path d="M3.5 10h17"/></svg>
+    </span>Купить</button>
+   <button class="tab" data-tab="contacts" data-i18n="navContacts"><span class="nav-ref-icon nav-contact-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M5 13v-2a7 7 0 0 1 14 0v2"/><path d="M5 13v4a2 2 0 0 0 2 2h1v-7H7a2 2 0 0 0-2 2Z"/><path d="M19 13v4a2 2 0 0 1-2 2h-1v-7h1a2 2 0 0 1 2 2Z"/></svg>
+    </span>Контакты</button>
+  </nav>
+  <div class="right-nav">
+   <div class="langs" id="languageSelector">
+    <button class="lang-current" id="langCurrent" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Выбрать язык">
+     <span class="lang-flag" id="langCurrentFlag" aria-hidden="true">🇷🇺</span>
+     <span class="lang-code" id="langCurrentCode">RU</span>
+     <svg class="lang-chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>
+    </button>
+    <div class="lang-menu" id="langMenu" role="listbox" aria-label="Язык сайта">
+     <button class="lang-option active" type="button" role="option" aria-selected="true" data-lang="ru"><span class="lang-flag" aria-hidden="true">🇷🇺</span><span class="lang-name">Русский</span><span class="lang-check" aria-hidden="true">✓</span></button>
+     <button class="lang-option" type="button" role="option" aria-selected="false" data-lang="en"><span class="lang-flag" aria-hidden="true">🇬🇧</span><span class="lang-name">English</span><span class="lang-check" aria-hidden="true">✓</span></button>
+    </div>
+   </div>
+   <button class="profile-pill" data-action="open-account"><span class="profile-mini-avatar" id="topAvatar">F</span><span id="topProfileText">Профиль</span></button>
+  </div>
+ </div>
+</header>
+
+<main>
+<section class="page active" id="home">
+ <div class="container home-wrap">
+  <div class="hero">
+   <div class="hero-content"><div class="eyebrow" data-i18n="eyebrow">FLUX CLIENT · 1.21+</div><h1 data-i18n="heroTitle">Наслаждайся игрой<br>вместе с <span>FLUX</span></h1></div>
+   <div class="hero-art hero-art-image" aria-hidden="true"><img src="assets/images/99460266-b37b-45bb-9ca7-aef97b0c1ad7.png" alt=""></div>
+  </div>
+  <section class="reviews">
+   <div class="section-title compact"><div class="kicker">04 — REVIEWS</div><h2 data-i18n="reviewsTitle">Отзывы<br><span>игроков.</span></h2></div>
+   <div class="reviews-grid">
+    <article class="review"><div class="review-top"><div class="avatar">V</div><div><b>V0dak</b><small>@v0dak</small></div><span>★★★★★</span></div><p data-i18n="review1">«Очень приятный интерфейс. Всё выглядит аккуратно и работает плавно.»</p></article>
+    <article class="review"><div class="review-top"><div class="avatar">F</div><div><b>Frost</b><small>@frost</small></div><span>★★★★★</span></div><p data-i18n="review2">«FLUX выглядит современно. Отдельные вкладки и быстрый доступ — то, что нужно.»</p></article>
+    <article class="review"><div class="review-top"><div class="avatar">N</div><div><b>Night</b><small>@night</small></div><span>★★★★★</span></div><p data-i18n="review3">«Лёгкий дизайн, хороший FPS и удобные настройки. Очень доволен.»</p></article>
+   </div>
+  </section>
+ </div>
+</section>
+
+<section class="page" id="features">
+ <div class="container">
+  <div class="section-title"><div class="kicker">01 — FLUX</div><h2 data-i18n="featuresTitle">Возможности<br><span>клиента.</span></h2></div>
+  <div class="grid">
+   <article class="card"><div class="num">01</div><h3 data-i18n="f1h">Производительность</h3><p data-i18n="f1p">Оптимизированное ядро, стабильный FPS и плавная работа клиента.</p></article>
+   <article class="card"><div class="num">02</div><h3 data-i18n="f2h">Чистый интерфейс</h3><p data-i18n="f2p">Минималистичный HUD и аккуратные элементы управления.</p></article>
+   <article class="card"><div class="num">03</div><h3 data-i18n="f3h">Настройка</h3><p data-i18n="f3p">Горячие клавиши, профили и гибкие параметры под твой стиль игры.</p></article>
+   <article class="card"><div class="num">04</div><h3 data-i18n="f4h">Обновления</h3><p data-i18n="f4p">Новые функции и улучшения без необходимости менять весь клиент.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="page" id="download">
+ <div class="container">
+  <div class="section-title"><div class="kicker">02 — DOWNLOAD</div><h2 data-i18n="downloadTitle">Скачай<br><span>FLUX Loader.</span></h2></div>
+  <div class="download-box">
+   <div><h3>FLUX Loader</h3><p data-i18n="loaderText">Загрузчик клиента для Windows. Войди в аккаунт, затем скачай лоадер.</p></div>
+   <button class="btn primary big" data-action="download-loader" data-i18n="downloadLoader">Скачать .exe ↓</button>
+  </div>
+  <div class="faq"><details><summary data-i18n="q1">Как установить FLUX?<b>+</b></summary><p data-i18n="a1">Скачай загрузчик, запусти его и следуй инструкциям на экране.</p></details><details><summary data-i18n="q2">Какие версии поддерживаются?<b>+</b></summary><p data-i18n="a2">Демо-сайт рассчитан на Minecraft 1.21+. Укажи реальные версии перед публикацией.</p></details></div>
+ </div>
+</section>
+
+<section class="page" id="pricing">
+ <div class="container shop-page">
+  <div class="shop-title">
+   <h2>Витрина <span class="flux-blue-text">FLUX</span></h2>
+   <p>Выбирай то, что нужно именно тебе — подписки, разовые наборы<br>и услуги для игры.</p>
+  </div>
+  <div class="shop-filters"><button class="shop-filter active">Все</button></div>
+  <div class="prices velka-prices">
+   <article class="price velka-card">
+    <small>30 ДНЕЙ</small>
+    <h3>Подписка FLUX 30 дней</h3>
+    <p>Полный доступ к возможностям FLUX на 30 дней.</p>
+    <div class="amount">249 ₽</div>
+    <ul>
+     <li>Все основные возможности</li>
+     <li>Обновления клиента</li>
+     <li>Стандартная поддержка</li>
+    </ul>
+    <button class="btn buy-btn" data-action="buy-product" data-product-name="Подписка FLUX 30 дней" data-price="249"><span class="nav-ref-icon nav-buy-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><rect x="3.5" y="6.5" width="17" height="11" rx="1.8"/><path d="M3.5 10h17"/></svg>
+    </span>Купить</button>
+   </article>
+   <article class="price velka-card">
+    <small>90 ДНЕЙ</small>
+    <h3>Подписка FLUX 90 дней</h3>
+    <p>Полный доступ к возможностям FLUX на 90 дней.</p>
+    <div class="amount">589 ₽</div>
+    <ul>
+     <li>Все основные возможности</li>
+     <li>Обновления клиента</li>
+     <li>Стандартная поддержка</li>
+    </ul>
+    <button class="btn buy-btn" data-action="buy-product" data-product-name="Подписка FLUX 90 дней" data-price="589"><span class="nav-ref-icon nav-buy-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><rect x="3.5" y="6.5" width="17" height="11" rx="1.8"/><path d="M3.5 10h17"/></svg>
+    </span>Купить</button>
+   </article>
+   <article class="price velka-card">
+    <small>180 ДНЕЙ</small>
+    <h3>Подписка FLUX 180 дней</h3>
+    <p>Полный доступ к возможностям FLUX на 180 дней.</p>
+    <div class="amount">799 ₽</div>
+    <ul>
+     <li>Все возможности FLUX</li>
+     <li>Обновления</li>
+     <li>Приоритетная поддержка</li>
+    </ul>
+    <button class="btn buy-btn" data-action="buy-product" data-product-name="Подписка FLUX 180 дней" data-price="799"><span class="nav-ref-icon nav-buy-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><rect x="3.5" y="6.5" width="17" height="11" rx="1.8"/><path d="M3.5 10h17"/></svg>
+    </span>Купить</button>
+   </article>
+   <article class="price velka-card">
+    <small>СБРОС HWID</small>
+    <h3>Сброс HWID</h3>
+    <p>Сброс привязки оборудования к аккаунту.</p>
+    <div class="amount">239 ₽</div>
+    <ul>
+     <li>Сброс привязки устройства</li>
+     <li>Быстрое применение</li>
+     <li>Поддержка FLUX</li>
+    </ul>
+    <button class="btn buy-btn" data-action="buy-product" data-product-name="Сброс HWID" data-price="239"><span class="nav-ref-icon nav-buy-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><rect x="3.5" y="6.5" width="17" height="11" rx="1.8"/><path d="M3.5 10h17"/></svg>
+    </span>Купить</button>
+   </article>
+  </div>
+ </div>
+</section>
+
+
+<section class="page" id="contacts">
+ <div class="container contacts-simple">
+  <div class="contacts-panel">
+   <h2>Контакты</h2>
+   <p class="contacts-subtitle">Выберите удобный способ — мы всегда на связи и поможем.</p>
+   <div class="contact-list">
+    <button class="contact-row" data-action="open-link" data-url="https://t.me/FluxxDLC"><span class="contact-left"><span class="contact-symbol">➤</span><b>Telegram</b></span><span class="contact-go">Перейти →</span></button>
+    <button class="contact-row" data-action="open-link" data-url="https://discord.com/channels/1542574644786241600/1542796583924539444"><span class="contact-left"><span class="contact-symbol">♟</span><b>Discord</b></span><span class="contact-go">Перейти →</span></button>
+    <button class="contact-row" data-action="toast" data-message="Добавь свой email в код сайта."><span class="contact-left"><span class="contact-symbol">✉</span><b>Email</b></span><span class="contact-go">Перейти →</span></button>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="page" id="configs">
+ <div class="container">
+  <div class="section-title">
+   <div class="kicker">05 — CONFIG STORE</div>
+   <h2>Конфиги<br><span>FLUX.</span></h2>
+  </div>
+  <div class="prices two">
+   <article class="price featured">
+    <small>CONFIG · V0DAK</small>
+    <h3>Конфиг V0dak</h3>
+    <div class="amount">V0dak</div>
+    <ul>
+     <li>Готовая конфигурация FLUX</li>
+     <li>Оптимизированные настройки</li>
+     <li>Обновления конфигурации</li>
+    </ul>
+    <button class="btn primary config-active" data-action="open-config" data-config="V0dak">Открыть</button>
+   </article>
+   <article class="price featured">
+    <small>CONFIG · HAPPY</small>
+    <h3>Happy</h3>
+    <div class="amount">Happy</div>
+    <ul>
+     <li>Готовая конфигурация FLUX</li>
+     <li>Удобные игровые настройки</li>
+     <li>Быстрая установка</li>
+    </ul>
+    <button class="btn primary config-active" data-action="open-config" data-config="Happy">Открыть</button>
+   </article>
+  </div>
+  <div class="promo promo-spaced">
+   <div>
+    <h3 class="compact-title">Другие конфиги</h3>
+    <p class="muted-small">Пока недоступны.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="page" id="account">
+ <div class="container profile-wrap">
+  <div class="profile-sidebar">
+   <div class="profile-user"><div class="profile-avatar">V</div><div><strong class="account-name">—</strong><span data-i18n="profileRole">Пользователь</span></div></div>
+   <div class="side-menu">
+    <button class="side-item active"><b data-i18n="sideHome">Главная</b></button>
+    <button class="side-item"><span>◈</span><b data-i18n="sideSecurity">Безопасность</b></button>
+    <button class="side-item"><span>♧</span><b data-i18n="sideReferral">Реферальная программа</b></button>
+    <label data-i18n="sideSubscription">ПОДПИСКА</label><button class="side-item"><span>◈</span><b data-i18n="sideFreeze">Заморозка</b></button>
+    <label data-i18n="sideFun">РАЗВЛЕЧЕНИЯ</label><button class="side-item"><span>◌</span><b data-i18n="sideRoulette">Рулетка</b></button>
+    <label data-i18n="sideShop">МАГАЗИН</label><button class="side-item config-nav" data-action="show-tab" data-tab-target="configs"><span>◌</span><b data-i18n="sideConfigs">Конфиги</b></button>
+   </div>
+   <button class="logout" data-action="logout" data-i18n="logout">↪ &nbsp; Выйти</button>
+  </div>
+  <div class="profile-main"><div class="profile-card">
+   <div class="profile-head"><h2 data-i18n="profileHome">Главная</h2><p data-i18n="profileData">Данные вашего аккаунта</p></div>
+   <div class="profile-rows">
+    <div><span>♙</span><label data-i18n="userName">Имя пользователя</label><strong class="account-name">V0dak</strong></div>
+    <div><span>▣</span><label>UID</label><strong>FLX-10417</strong></div>
+    <div><span>▦</span><label data-i18n="deviceId">Идентификатор устройства</label><strong>FLUX-DEVICE-01</strong></div>
+    <div><span>▦</span><label data-i18n="hwid">Доступно сбросов HWID</label><strong>0</strong></div>
+    <div><span>▭</span><label data-i18n="subscription">Подписка</label><strong data-i18n="subscriptionValue">90 дней · активна</strong></div>
+    <div><span>♙</span><label data-i18n="role">Роль</label><strong data-i18n="profileRole">Пользователь</strong></div>
+   </div>
+   <div class="profile-actions"><button class="btn primary" data-action="show-tab" data-tab-target="pricing" data-i18n="buySubscription">♧ &nbsp; Купить подписку</button><button class="btn" data-action="show-tab" data-tab-target="download" data-i18n="downloadLauncher">▣ &nbsp; Скачать лаунчер</button></div>
+   <div class="activate"><b>⚿ &nbsp; <span data-i18n="activateKey">Активация ключа</span></b><div><input id="activationKey" placeholder="FLUX-XXXX-XXXX"><button data-action="activate-key" data-i18n="activate">Активировать</button></div></div>
+  </div></div>
+ </div>
+</section>
+
+<section class="page" id="security">
+ <div class="container profile-wrap security-layout">
+  <div class="profile-sidebar">
+   <div class="profile-user">
+    <div class="profile-avatar">—</div>
+    <div><strong class="account-name">—</strong><span>Пользователь</span></div>
+   </div>
+   <div class="side-menu profile-nav"></div>
+   <button class="logout" data-action="logout">↪ &nbsp; Выйти</button>
+  </div>
+
+  <div class="profile-main">
+   <div class="profile-card security-card">
+    <div class="profile-head">
+     <h2>Безопасность</h2>
+     <p>Пароль, ключи и устройство</p>
+    </div>
+
+    <div class="security-section">
+     <h3><span class="security-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v5c0 4.8 2.8 8 7 10 4.2-2 7-5.2 7-10V6l-7-3Z"/><path d="m9.5 12 1.6 1.6 3.5-3.7"/></svg></span> Сменить пароль</h3>
+     <div class="security-grid security-grid-3">
+      <input type="password" placeholder="Текущий пароль">
+      <input type="password" placeholder="Новый пароль">
+      <input type="password" placeholder="Повторите пароль">
+     </div>
+     <button class="btn primary security-action" data-action="toast" data-message="Изменение пароля доступно после подключения сервера.">▣ &nbsp; Сменить пароль</button>
+    </div>
+
+    <div class="security-section">
+     <h3><span class="security-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span> Смена почты</h3>
+     <div class="security-grid security-grid-2">
+      <input type="email" placeholder="Новая почта">
+      <input type="password" placeholder="Текущий пароль">
+     </div>
+     <button class="btn primary security-action" data-action="toast" data-message="Смена почты доступна после подключения сервера.">✉ &nbsp; Сменить почту</button>
+    </div>
+
+    <div class="security-section security-section-last">
+     <h3><span class="security-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v5c0 4.8 2.8 8 7 10 4.2-2 7-5.2 7-10V6l-7-3Z"/><circle cx="12" cy="11" r="2.3"/><path d="M8.8 17c.8-1.7 1.9-2.5 3.2-2.5s2.4.8 3.2 2.5"/></svg></span> Telegram и двухфакторная защита</h3>
+     <p>Привяжите Telegram, чтобы включить подтверждение входа кодом. Один раз с IP — дальше вход с него без кода.</p>
+     <button class="btn primary security-action" data-action="toast" data-message="Telegram будет доступен после подключения сервера.">◈ &nbsp; Привязать Telegram</button>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="page" id="referral">
+ <div class="container profile-wrap"><div class="profile-sidebar"><div class="profile-user"><div class="profile-avatar">—</div><div><strong class="account-name">—</strong><span>Пользователь</span></div></div><div class="side-menu profile-nav"></div><button class="logout" data-action="logout">↪ &nbsp; Выйти</button></div>
+  <div class="profile-main"><div class="profile-card"><div class="profile-head"><h2>Реферальная программа</h2><p>Приглашай друзей и получай дни подписки</p></div>
+   <div class="ref-link"><span>Твоя реферальная ссылка</span><strong id="referralLink">https://flux.local/?ref=v0dak</strong><button class="btn primary" data-action="copy-referral">Копировать</button></div>
+   <div class="stats"><div><small>Регистраций</small><b>0</b></div><div><small>Купили подписку</small><b>0</b></div><div><small>Начислено</small><b>+0 дн.</b></div></div>
+   <p class="muted">За каждого приглашённого пользователя, который зарегистрируется и купит подписку, начисляется бонус.</p>
+  </div></div>
+ </div>
+</section>
+
+<section class="page" id="freeze">
+ <div class="container profile-wrap"><div class="profile-sidebar"><div class="profile-user"><div class="profile-avatar">—</div><div><strong class="account-name">—</strong><span>Пользователь</span></div></div><div class="side-menu profile-nav"></div><button class="logout" data-action="logout">↪ &nbsp; Выйти</button></div>
+  <div class="profile-main"><div class="profile-card"><div class="profile-head"><h2>Заморозка</h2><p>Управление подпиской</p></div>
+   <div class="freeze-banner"><h2>Подписка активна</h2><p>Заморозка доступна после подходящей покупки или ручного начисления.</p></div>
+   <div class="stats"><div><small>Доступно заморозок</small><b>0</b></div><div><small>Осталось подписки</small><b>90 дн.</b></div><div><small>Дата окончания</small><b>—</b></div></div>
+   <div class="security-box"><h3>Как это работает</h3><p>При заморозке доступ к клиенту временно закрывается, а оплаченные дни сохраняются.</p></div>
+  </div></div>
+ </div>
+</section>
+
+<section class="page" id="roulette">
+ <div class="container profile-wrap"><div class="profile-sidebar"><div class="profile-user"><div class="profile-avatar">—</div><div><strong class="account-name">—</strong><span>Пользователь</span></div></div><div class="side-menu profile-nav"></div><button class="logout" data-action="logout">↪ &nbsp; Выйти</button></div>
+  <div class="profile-main"><div class="profile-card"><div class="profile-head"><h2>Рулетка</h2><p>Ежедневные награды FLUX</p></div>
+   <div class="freeze-banner"><h2>Аккаунт готов</h2><p>Ежедневная рулетка открывается для подходящих аккаунтов.</p></div>
+   <div class="stats"><div><small>Прокрутки сегодня</small><b>0 из 2</b></div><div><small>Баланс FLX</small><b>0</b></div><div><small>Следующий сброс</small><b>—</b></div></div>
+   <div class="roulette-box">
+      <div class="roulette-head">
+        <div><span class="kicker">FLUX DAILY</span><h3>Ежедневная рулетка</h3><p>Две бесплатные попытки каждый день.</p></div>
+        <div class="roulette-counter"><span>Попытки</span><b id="spinCount">0 / 2</b></div>
+      </div>
+      <div class="roulette-stage">
+        <div class="roulette-pointer"></div>
+        <div class="roulette-wheel" id="rouletteWheel">
+          <div class="wheel-center"><span>FLUX</span><small>SPIN</small></div>
+          <div class="wheel-label l1">10 FLX</div><div class="wheel-label l2">+1 ДЕНЬ</div>
+          <div class="wheel-label l3">СБРОС HWID</div><div class="wheel-label l4">УДАЧА</div>
+          <div class="wheel-label l5">ЗАМОРОЗКА</div><div class="wheel-label l6">25 FLX</div>
+        </div>
+      </div>
+      <div class="roulette-result" id="rouletteResult">Нажми «Прокрутить», чтобы испытать удачу.</div>
+      <button class="btn primary roulette-spin" id="spinButton" data-action="spin-roulette">Прокрутить</button>
+    </div>
+ </div>
+</section>
+
+<div id="loginOverlay" class="login-overlay" aria-hidden="true">
+ <div class="login-modal">
+  <button type="button" class="auth-close" data-action="close-login" aria-label="Закрыть">×</button>
+  <div class="flux-auth-brand"><span class="flux-auth-brand-mark"></span><span>FLUX</span></div>
+  <button type="button" class="auth-back" id="authBack" data-action="set-auth-mode" data-mode="login">← Назад ко входу</button>
+  <div class="login-reference-heading" aria-label="С возвращением. Начни свой путь прямо сейчас · FLUX">
+    <div class="login-reference-title">С&nbsp;возвращением</div>
+    <div class="login-reference-subtitle">Начни свой путь прямо сейчас · <span class="flux-word">FLUX</span></div>
+  </div>
+  <h2 id="authTitle">С возвращением</h2>
+  <p class="auth-subtitle" id="authText">Начни свой путь прямо сейчас · <b>FLUX</b></p>
+  <input id="authLogin" placeholder="E-mail" autocomplete="username">
+  <div class="auth-password-wrap">
+    <input id="authPass" type="password" placeholder="Введи пароль" autocomplete="current-password">
+    <button type="button" class="auth-show-password" data-action="toggle-password">Показать</button>
+  </div>
+  <div class="auth-options">
+    <div class="auth-remember"><button type="button" class="auth-check on" id="fluxRemember" data-action="toggle-on" aria-label="Запомнить меня"></button><span>Запомнить меня</span></div>
+    <button class="forgot-link" id="forgotSwitch" type="button" data-action="toggle-forgot-mode">Забыли пароль?</button>
+  </div>
+  <button class="btn primary" id="authSubmit" data-action="submit-auth">Войти</button>
+  <button class="auth-switch" id="authSwitch" data-action="toggle-auth-mode">Нет аккаунта? <b>Зарегистрироваться</b></button>
+ </div>
+</div>
+
+</main>
+<footer><div class="container"><span>FLUX © 2026</span><span data-i18n="footer">Minecraft Client</span></div></footer>
+<div class="purchase-overlay" id="purchaseOverlay" data-action="close-purchase-backdrop">
+ <aside class="purchase-modal purchase-modal-funpay">
+  <div class="purchase-head"><h3>Покупка товара</h3><button class="purchase-close" data-action="close-purchase">×</button></div>
+  <div class="purchase-product"><span id="purchaseProductName">Товар</span><strong id="purchaseBase">0 ₽</strong></div>
+  <div class="purchase-label purchase-label-centered">Способ оплаты</div>
+  <div class="server-options server-options-single">
+   <button class="server-btn active" data-server="FunPay" data-action="select-server">
+    <span class="server-card-icon funpay">FP</span>
+    <span class="server-card-copy"><b>FunPay</b><small>Оплата через FunPay</small></span>
+    <span class="server-card-check">✓</span>
+   </button>
+  </div>
+  <div class="purchase-label">Промокод</div>
+  <div class="purchase-promo"><input id="purchasePromo" placeholder="Введите промокод"><button data-action="apply-promo">Применить</button></div>
+  <div class="promo-success" id="purchasePromoSuccess">✓ Промокод применён! Скидка 7%</div>
+  <div class="purchase-summary"><div class="summary-row"><span>Скидка</span><strong id="purchaseDiscount">−0 ₽</strong></div><div class="summary-row total"><span>Итого</span><strong id="purchaseTotal">0 ₽</strong></div></div>
+  <button class="pay-btn" data-action="continue-payment">Перейти на FunPay</button>
+  <div class="pay-note">Выбранный способ оплаты: <span id="purchaseServer">FunPay</span>. После нажатия откроется страница продавца на FunPay.</div>
+ </aside>
+</div>
+<div id="toast"></div>
+
+
+<div class="purchase-overlay" id="purchaseOverlay" aria-hidden="true">
+  <div class="purchase-modal">
+    <button class="purchase-close" type="button" data-action="close-purchase">×</button>
+    <div class="purchase-kicker">Оплата заказа</div>
+    <h2 id="purchaseTitle">Подписка FLUX</h2>
+    <div class="purchase-price" id="purchasePrice">800 ₽</div>
+
+    <div class="purchase-divider"></div>
+    <div class="purchase-label">Способ оплаты</div>
+
+    <div class="payment-methods payment-methods-centered">
+      <button class="payment-method active" type="button" data-action="select-payment">
+        <span class="funpay-mark">FUN<span>PAY</span></span>
+        <span><b>FunPay</b><small>Оплата через FunPay</small></span>
+        <span class="payment-check">✓</span>
+      </button>
+    </div>
+
+    <div class="purchase-divider"></div>
+    <div class="purchase-label">Промокод</div>
+    <div class="purchase-promo">
+      <input id="purchasePromo" type="text" placeholder="Введите промокод" autocomplete="off">
+      <button type="button" data-action="apply-promo">Применить</button>
+    </div>
+    <div class="promo-status" id="promoStatus"></div>
+
+    <button class="purchase-pay" id="purchasePay" type="button" data-action="complete-purchase">Оплатить 800 ₽</button>
+    <div class="purchase-legal">Нажимая «Оплатить», вы соглашаетесь с правилами и политикой конфиденциальности.</div>
+  </div>
+</div>
+
+
+<script src="js/language.js"></script>
+<script src="js/app.js"></script>
+<script src="js/auth-ui.js"></script>
+<script src="js/account.js"></script>
+<script src="js/store.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/auth.js"></script>
+<script src="js/intro.js"></script>
+</body>
+</html>
