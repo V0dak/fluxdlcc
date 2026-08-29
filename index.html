@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/auth.css">
 <link rel="stylesheet" href="css/account.css">
-<link rel="stylesheet" href="css/mobile.css">
+<link rel="stylesheet" href="css/theme.css">
 </head>
 <body>
 
@@ -43,6 +43,18 @@
     </span>Контакты</button>
   </nav>
   <div class="right-nav">
+   <div class="theme-switcher" id="themeSwitcher">
+    <button class="theme-current" id="themeCurrent" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Выбрать тему">
+     <span class="theme-dot" aria-hidden="true"></span>
+     <svg class="theme-chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg>
+    </button>
+    <div class="theme-menu" id="themeMenu" role="listbox" aria-label="Тема сайта">
+     <button class="theme-option active" type="button" role="option" aria-selected="true" data-theme="blue"><span class="theme-swatch blue"></span><span>Синяя</span><span class="theme-check">✓</span></button>
+     <button class="theme-option" type="button" role="option" aria-selected="false" data-theme="red"><span class="theme-swatch red"></span><span>Красная</span><span class="theme-check">✓</span></button>
+     <button class="theme-option" type="button" role="option" aria-selected="false" data-theme="green"><span class="theme-swatch green"></span><span>Зелёная</span><span class="theme-check">✓</span></button>
+     <button class="theme-option" type="button" role="option" aria-selected="false" data-theme="black"><span class="theme-swatch black"></span><span>Чёрная</span><span class="theme-check">✓</span></button>
+    </div>
+   </div>
    <div class="langs" id="languageSelector">
     <button class="lang-current" id="langCurrent" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Выбрать язык">
      <span class="lang-flag" id="langCurrentFlag" aria-hidden="true">🇷🇺</span>
@@ -427,6 +439,7 @@
 
 
 <script src="js/language.js"></script>
+<script src="js/theme.js"></script>
 <script src="js/app.js"></script>
 <script src="js/auth-ui.js"></script>
 <script src="js/account.js"></script>
