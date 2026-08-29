@@ -3001,3 +3001,234 @@ input:focus,
 .muted-small{margin:0;color:#77777d;font-size:12px}
 .payment-methods.payment-methods-centered{grid-template-columns:minmax(0,340px);justify-content:center}
 .roulette-prize{color:#6f9cff}
+
+/* ===== Mobile layout pass ===== */
+@media (max-width: 780px){
+  html,body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden!important;
+  }
+
+  /* Header: two clean rows instead of squeezing desktop nav */
+  .top{
+    height:auto!important;
+    min-height:104px!important;
+    padding:8px 9px 7px!important;
+    align-items:flex-start!important;
+    background:linear-gradient(180deg,rgba(0,0,0,.98) 0%,rgba(0,0,0,.92) 78%,rgba(0,0,0,0) 100%)!important;
+  }
+  .nav.velka-nav{
+    width:100%!important;
+    min-height:88px!important;
+    height:auto!important;
+    margin:0!important;
+    padding:8px 10px!important;
+    border-radius:18px!important;
+    display:grid!important;
+    grid-template-columns:auto 1fr auto!important;
+    grid-template-areas:
+      "brand spacer right"
+      "tabs tabs tabs"!important;
+    align-items:center!important;
+    column-gap:8px!important;
+    row-gap:7px!important;
+  }
+  .brand-logo{
+    grid-area:brand!important;
+    font-size:17px!important;
+    gap:7px!important;
+    min-width:0!important;
+  }
+  .brand-logo span{display:inline!important}
+  .top-flux-logo{width:28px!important;height:auto!important}
+
+  .right-nav{
+    grid-area:right!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    gap:5px!important;
+    min-width:0!important;
+  }
+  .langs{
+    display:block!important;
+    margin:0!important;
+  }
+  .lang-current{
+    min-width:58px!important;
+    width:auto!important;
+    height:32px!important;
+    padding:0 6px!important;
+    gap:3px!important;
+    border-radius:9px!important;
+    background:rgba(255,255,255,.035)!important;
+  }
+  .lang-current .lang-flag{
+    width:18px!important;
+    min-width:18px!important;
+    font-size:15px!important;
+  }
+  .lang-current .lang-code{font-size:11px!important}
+  .lang-current .lang-chevron{width:9px!important;height:9px!important;margin-left:1px!important}
+  .lang-menu{top:38px!important;right:0!important;width:160px!important}
+
+  .profile-pill,
+  .profile-pill.guest-login{
+    min-width:34px!important;
+    width:34px!important;
+    height:34px!important;
+    padding:3px!important;
+    justify-content:center!important;
+    gap:0!important;
+  }
+  .profile-pill #topProfileText,
+  .profile-pill.guest-login #topProfileText{display:none!important}
+  .profile-mini-avatar,
+  .profile-pill.guest-login .profile-mini-avatar{
+    width:27px!important;
+    height:27px!important;
+    min-width:27px!important;
+  }
+
+  .velka-nav .tabs,
+  .tabs{
+    grid-area:tabs!important;
+    position:static!important;
+    left:auto!important;
+    top:auto!important;
+    transform:none!important;
+    width:100%!important;
+    margin:0!important;
+    padding:0!important;
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:4px!important;
+    border:0!important;
+    background:transparent!important;
+  }
+  .velka-nav .tab,
+  .tab{
+    display:flex!important;
+    width:100%!important;
+    min-width:0!important;
+    height:31px!important;
+    padding:0 5px!important;
+    margin:0!important;
+    justify-content:center!important;
+    gap:4px!important;
+    border-radius:9px!important;
+    font-size:11px!important;
+    white-space:nowrap!important;
+    background:transparent!important;
+  }
+  .velka-nav .tab.active{background:rgba(255,255,255,.07)!important}
+  .nav-ref-icon{width:13px!important;height:13px!important}
+
+  /* General page rhythm */
+  .page{padding:122px 14px 44px!important}
+  .container,.home-wrap,.shop-page{width:100%!important;max-width:100%!important}
+
+  /* Home hero */
+  #home.page{padding-left:0!important;padding-right:0!important}
+  #home .home-wrap{padding:0 14px!important}
+  .hero{
+    height:570px!important;
+    min-height:570px!important;
+    overflow:hidden!important;
+    align-items:flex-start!important;
+  }
+  .hero-content{
+    width:100%!important;
+    padding-top:12px!important;
+    z-index:3!important;
+  }
+  .eyebrow{
+    margin-bottom:16px!important;
+    font-size:8px!important;
+    letter-spacing:.2em!important;
+  }
+  .hero h1,
+  h1{
+    max-width:360px!important;
+    font-size:clamp(35px,10.8vw,48px)!important;
+    line-height:1.01!important;
+    letter-spacing:-.055em!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+  .hero-art.hero-art-image{
+    top:155px!important;
+    left:50%!important;
+    width:170vw!important;
+    max-width:none!important;
+    min-width:610px!important;
+    transform:translateX(-50%)!important;
+    overflow:hidden!important;
+  }
+  .hero-art.hero-art-image img{
+    width:100%!important;
+    max-width:none!important;
+  }
+
+  .reviews{padding:20px 0 54px!important}
+  .section-title.compact{margin-bottom:18px!important}
+  .section-title.compact h2{font-size:40px!important}
+  .reviews-grid{grid-template-columns:1fr!important;gap:10px!important}
+  .review{padding:18px!important;border-radius:18px!important}
+  .review p{font-size:12px!important;margin-top:14px!important}
+
+  /* Inner pages */
+  .section-title{margin-bottom:24px!important}
+  h2{font-size:clamp(34px,10vw,46px)!important}
+  .grid,.prices,.three,.two,.velka-prices{grid-template-columns:1fr!important}
+  .card,.price,.velka-card,.download-box,.account-box,.promo{
+    padding:20px!important;
+    border-radius:18px!important;
+  }
+  .card{min-height:0!important}
+  .card h3{margin-top:22px!important}
+  .download-box,.account-box{display:block!important}
+  .btn.big{width:100%!important;margin-top:16px!important}
+
+  /* Shop */
+  .shop-title{margin:0 0 20px!important}
+  .shop-title h2{font-size:38px!important}
+  .shop-title p{font-size:12px!important;padding:0 4px!important}
+  .shop-title br{display:none!important}
+  .shop-filters{margin-bottom:20px!important}
+  .velka-prices{gap:12px!important}
+  .velka-card{min-height:0!important}
+  .velka-card small{font-size:31px!important}
+  .velka-card h3{margin-top:18px!important}
+  .velka-card p{margin-top:14px!important}
+  .velka-card .amount{margin-top:16px!important}
+  .purchase-modal{
+    width:100%!important;
+    max-width:100%!important;
+    padding:20px 16px!important;
+  }
+  .server-options{grid-template-columns:1fr!important}
+
+  /* Contacts */
+  #contacts{padding-top:122px!important}
+  #contacts .contacts-simple{width:100%!important}
+  .contacts-panel{padding:20px 16px!important;border-radius:18px!important}
+  .contact-row{min-height:56px!important}
+  .contact-left{gap:10px!important;font-size:14px!important}
+  .contact-go{font-size:12px!important}
+
+  footer{padding:22px 14px!important}
+  footer .container{display:flex!important;flex-direction:column!important;gap:8px!important;text-align:center!important}
+}
+
+@media (max-width: 390px){
+  .nav.velka-nav{padding-left:8px!important;padding-right:8px!important}
+  .brand-logo{font-size:15px!important}
+  .top-flux-logo{width:25px!important}
+  .lang-current{min-width:54px!important;padding:0 5px!important}
+  .velka-nav .tab,.tab{font-size:10px!important;padding:0 3px!important}
+  .nav-ref-icon{display:none!important}
+  .hero h1,h1{font-size:36px!important;max-width:330px!important}
+  .hero-art.hero-art-image{width:185vw!important;min-width:590px!important;top:165px!important}
+}

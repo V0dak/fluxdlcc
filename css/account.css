@@ -340,3 +340,21 @@ body.security-dashboard-open .top{
   #security .security-card{min-height:0!important;padding:14px!important}
   #security .security-action{width:100%!important}
 }
+
+@media(max-width:780px){
+  #account.page,
+  #referral.page,
+  #freeze.page,
+  #roulette.page,
+  #configs.page{
+    padding-top:122px!important;
+  }
+  #account > .container,
+  #referral > .container,
+  #freeze > .container,
+  #roulette > .container,
+  #configs > .container{
+    width:100%!important;
+    max-width:100%!important;
+  }
+}
